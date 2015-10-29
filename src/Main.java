@@ -3,54 +3,54 @@ import java.io.Console;
 public class Main {
 
     public static void main(String[] args) {
-	    BoardPrint();
-        MenuPrint();
-        ChooseGame();
-        SinglePlayer();
+	    boardPrint();
+        menuPrint();
+        chooseGame();
+        singlePlayer();
         AI();
-        MenuControl();
-        Menu();
-        MultiPlayer();
-        GameSpeed();
-        GameOver();
-        Pause();
+        menuControl();
+        menu();
+        multiPlayer();
+        gameSpeed();
+        gameOver();
+        pause();
 
 
 
     }
 
-    private static void Pause() {
+    private static void pause() {
     }
 
-    private static void GameOver() {
+    private static void gameOver() {
     }
 
-    private static void GameSpeed() {
+    private static void gameSpeed() {
 
     }
 
-    private static void MultiPlayer() {
+    private static void multiPlayer() {
     }
 
-    private static void Menu() {
+    private static void menu() {
     }
 
-    private static void MenuControl() {
+    private static void menuControl() {
     }
 
     private static void AI() {
     }
 
-    private static void SinglePlayer() {
+    private static void singlePlayer() {
 
     }
 
-    private static void ChooseGame() {
+    private static void chooseGame() {
     }
 
-    private static void MenuPrint() {
+    private static void menuPrint() {
     }
 
-    private static void BoardPrint() {
+    private static void boardPrint() {
     }
 }
