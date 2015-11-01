@@ -1,10 +1,11 @@
-import java.io.Console;
-
 public class Main {
 
     public static void main(String[] args) {
-	    char[][] board = board();
-        boardPrint(board);
+
+        new GameEngine().start();
+
+	    //char[][] board = board();
+        //boardPrint(board);
         menuPrint();
         chooseGame();
         singlePlayer();
