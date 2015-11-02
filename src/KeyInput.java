@@ -1,22 +1,18 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by Vilimir on 2/11/2015.
- */
-
-class Key{
-    private boolean pressed = false;
-    public boolean isPressed(){
-        return pressed;
-    }
-    public void toggle (boolean isPressed){
-        pressed = isPressed;
-    }
-}
 public class KeyInput implements KeyListener {
+
+    class Key{
+        private boolean pressed = false;
+        public boolean isPressed(){
+            return pressed;
+        }
+        public void toggle (boolean isPressed){
+            pressed = isPressed;
+        }
+    }
+
     public KeyInput(GameEngine game){
         game.addKeyListener(this);
     }

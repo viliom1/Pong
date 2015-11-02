@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -11,11 +10,12 @@ public class GameEngine extends Canvas implements Runnable {
     public static final int WIDTH = 400;
     public static final int HEIGHT = 300;
     //public static final int SCALE = 3;
-    public static final String NAME = "GAME";
+    public static final String NAME = "Pong";
 
     private JFrame frame;
     private Platform platformOne = new Platform(10, 130);
     private Platform platformTwo = new Platform(390, 130);
+    private Pong pong = new Pong(WIDTH / 2, HEIGHT / 2);
 
     public boolean running = false;
     public int tickCount = 0;
@@ -81,7 +81,7 @@ public class GameEngine extends Canvas implements Runnable {
 
             if (System.currentTimeMillis() - lastTimer >= 1000) {
                 lastTimer += 1000;
-                System.out.println("tick count, fps: " + frames + "," + ticks);
+                System.out.println("tick count: " + ticks + ", fps: " + frames);
                 frames = 0;
                 ticks = 0;
             }
@@ -102,6 +102,8 @@ public class GameEngine extends Canvas implements Runnable {
         if (input.p2Down.isPressed()){
             moveP2Down();
         }
+
+        movePong();
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = i * tickCount;
@@ -131,7 +133,7 @@ public class GameEngine extends Canvas implements Runnable {
 
         //draw pong
         g.setColor(Color.WHITE);
-        g.fillOval(WIDTH / 2, HEIGHT / 2, 5, 5);
+        g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
 
         g.dispose();
         bs.show();
@@ -173,4 +175,29 @@ public class GameEngine extends Canvas implements Runnable {
             platformTwo.setY(platformTwo.getY() + 20);
         }
     }
+    //move Pong left and right
+    boolean IsMoveRight = true;
+    public void movePong(){
+        if (IsMoveRight){
+            pong.setX(pong.getX() + 2);
+            if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + platformTwo.getHeight() && pong.getX() == platformTwo.getX()){
+                IsMoveRight = false;
+            }
+            if (pong.getX() > WIDTH){
+                pong.setX(WIDTH / 2);
+                IsMoveRight = false;
+            }
+        }
+        else{
+            pong.setX(pong.getX() - 2);
+            if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + platformOne.getHeight() && pong.getX() == platformOne.getX()){
+                IsMoveRight = true;
+            }
+            if (pong.getX() < 0){
+                pong.setX(WIDTH / 2);
+                IsMoveRight = true;
+            }
+        }
+    }
+
 }
