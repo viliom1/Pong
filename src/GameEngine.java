@@ -5,7 +5,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
-public class GameEngine extends Canvas implements Runnable{
+public class GameEngine extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
     public static final int WIDTH = 400;
@@ -21,14 +21,16 @@ public class GameEngine extends Canvas implements Runnable{
     public int tickCount = 0;
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-    private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+    private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+
+    public KeyInput input = new KeyInput(this);
 
     public GameEngine() {
         //setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         //setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
         //setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
-        setMinimumSize(new Dimension(WIDTH, HEIGHT ));
+        setMinimumSize(new Dimension(WIDTH, HEIGHT));
         setMaximumSize(new Dimension(WIDTH, HEIGHT));
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
@@ -46,7 +48,7 @@ public class GameEngine extends Canvas implements Runnable{
 
     public void run() {
         long lastTime = System.nanoTime();
-        double nsPerTick = 1_000_000_000D/60D;
+        double nsPerTick = 1_000_000_000D / 60D;
 
         int ticks = 0;
         int frames = 0;
@@ -61,7 +63,7 @@ public class GameEngine extends Canvas implements Runnable{
             while (delta >= 1) {
                 ticks++;
                 tick();
-                delta -=1;
+                delta -= 1;
                 shoudRender = true;
             }
 
@@ -70,6 +72,7 @@ public class GameEngine extends Canvas implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
 
             if (shoudRender) {
                 frames++;
@@ -85,8 +88,20 @@ public class GameEngine extends Canvas implements Runnable{
         }
     }
 
-    public void tick(){
+    public void tick() {
         tickCount++;
+        if (input.p1Up.isPressed()){
+            moveP1Up();
+        }
+        if (input.p1Down.isPressed()){
+            moveP1Down();
+        }
+        if (input.p2Up.isPressed()){
+            moveP2Up();
+        }
+        if (input.p2Down.isPressed()){
+            moveP2Down();
+        }
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = i * tickCount;
@@ -126,12 +141,36 @@ public class GameEngine extends Canvas implements Runnable{
         new GameEngine().start();
     }
 
-    public synchronized void start() {
+    public synchronized GameEngine start() {
         running = true;
         new Thread(this).start();
+        return null;
     }
 
     public synchronized void stop() {
         running = false;
+    }
+
+    public void moveP1Up() {
+        if (platformOne.getY() - 20 >= 10) {
+            platformOne.setY(platformOne.getY() - 20);
+        }
+    }
+
+    public void moveP1Down() {
+        if (platformOne.getY() + 20 <= 250) {
+            platformOne.setY(platformOne.getY() + 20);
+        }
+    }
+    public void moveP2Up() {
+        if (platformTwo.getY() - 20 >= 10) {
+            platformTwo.setY(platformTwo.getY() - 20);
+        }
+    }
+
+    public void moveP2Down() {
+        if (platformTwo.getY() + 20 <= 250) {
+            platformTwo.setY(platformTwo.getY() + 20);
+        }
     }
 }

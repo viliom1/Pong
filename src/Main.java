@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        new GameEngine().start();
+        GameEngine ge = new GameEngine().start();
 
 	    //char[][] board = board();
         //boardPrint(board);
@@ -16,9 +16,6 @@ public class Main {
         gameSpeed();
         gameOver();
         pause();
-
-
-
 
     }
 
