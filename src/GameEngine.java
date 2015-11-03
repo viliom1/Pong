@@ -13,8 +13,8 @@ public class GameEngine extends Canvas implements Runnable {
     public static final String NAME = "Pong";
 
     private JFrame frame;
-    private Platform platformOne = new Platform(10, 130);
-    private Platform platformTwo = new Platform(390, 130);
+    private Platform platformOne = new Platform(10, 120);
+    private Platform platformTwo = new Platform(390, 120);
     private Pong pong = new Pong(WIDTH / 2, HEIGHT / 2);
 
     public boolean running = false;
@@ -154,50 +154,204 @@ public class GameEngine extends Canvas implements Runnable {
     }
 
     public void moveP1Up() {
-        if (platformOne.getY() - 20 >= 10) {
-            platformOne.setY(platformOne.getY() - 20);
+        if (platformOne.getY() - 10 >= 10) {
+            platformOne.setY(platformOne.getY() - 10);
         }
     }
 
     public void moveP1Down() {
-        if (platformOne.getY() + 20 <= 250) {
-            platformOne.setY(platformOne.getY() + 20);
+        if (platformOne.getY() + 10 <= 240) {
+            platformOne.setY(platformOne.getY() + 10);
         }
     }
     public void moveP2Up() {
-        if (platformTwo.getY() - 20 >= 10) {
-            platformTwo.setY(platformTwo.getY() - 20);
+        if (platformTwo.getY() - 10 >= 10) {
+            platformTwo.setY(platformTwo.getY() - 10);
         }
     }
 
     public void moveP2Down() {
-        if (platformTwo.getY() + 20 <= 250) {
-            platformTwo.setY(platformTwo.getY() + 20);
+        if (platformTwo.getY() + 10 <= 240) {
+            platformTwo.setY(platformTwo.getY() + 10);
         }
     }
-    //move Pong left and right
+    //move Pong
     boolean IsMoveRight = true;
+    boolean IsMoveRightUp = false;
+    boolean IsMoveRightDown = false;
+    boolean IsMoveLeft = false;
+    boolean IsMoveLeftUp = false;
+    boolean IsMoveLeftDown = false;
     public void movePong(){
         if (IsMoveRight){
             pong.setX(pong.getX() + 2);
-            if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + platformTwo.getHeight() && pong.getX() == platformTwo.getX()){
+            if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()){
                 IsMoveRight = false;
+                IsMoveLeftUp = true;
+            }
+            else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()){
+                IsMoveRight = false;
+                IsMoveLeft = true;
+            }
+            else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()){
+                IsMoveRight = false;
+                IsMoveLeftDown = true;
             }
             if (pong.getX() > WIDTH){
                 pong.setX(WIDTH / 2);
-                IsMoveRight = false;
+                pong.setY(HEIGHT / 2);
+                IsMoveRight = true;
+                IsMoveRightUp = false;
+                IsMoveRightDown = false;
+                IsMoveLeft = false;
+                IsMoveLeftUp = false;
+                IsMoveLeftDown = false;
             }
         }
-        else{
-            pong.setX(pong.getX() - 2);
-            if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + platformOne.getHeight() && pong.getX() == platformOne.getX()){
+        else if (IsMoveRightUp){
+            pong.setX(pong.getX() + 2);
+            pong.setY(pong.getY() - 2);
+            if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()){
+                IsMoveRightUp = false;
+                IsMoveLeftUp = true;
+            }
+            else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()){
+                IsMoveRightUp = false;
+                IsMoveLeft = true;
+            }
+            else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()){
+                IsMoveRightUp = false;
+                IsMoveLeftDown = true;
+            }
+            if (pong.getX() > WIDTH){
+                pong.setX(WIDTH / 2);
+                pong.setY(HEIGHT / 2);
                 IsMoveRight = true;
+                IsMoveRightUp = false;
+                IsMoveRightDown = false;
+                IsMoveLeft = false;
+                IsMoveLeftUp = false;
+                IsMoveLeftDown = false;
+            }
+            if (pong.getY() == 0){
+                IsMoveRightUp = false;
+                IsMoveRightDown = true;
+            }
+        }
+        else if (IsMoveRightDown){
+            pong.setX(pong.getX() + 2);
+            pong.setY(pong.getY() + 2);
+            if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()){
+                IsMoveRightDown = false;
+                IsMoveLeftUp = true;
+            }
+            else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()){
+                IsMoveRightDown = false;
+                IsMoveLeft = true;
+            }
+            else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()){
+                IsMoveRightDown = false;
+                IsMoveLeftDown = true;
+            }
+            if (pong.getX() > WIDTH){
+                pong.setX(WIDTH / 2);
+                pong.setY(HEIGHT / 2);
+                IsMoveRight = true;
+                IsMoveRightUp = false;
+                IsMoveRightDown = false;
+                IsMoveLeft = false;
+                IsMoveLeftUp = false;
+                IsMoveLeftDown = false;
+            }
+            if (pong.getY() == HEIGHT){
+                IsMoveRightDown = false;
+                IsMoveRightUp = true;
+            }
+        }
+        else if (IsMoveLeft){
+            pong.setX(pong.getX() - 2);
+            if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()){
+                IsMoveLeft = false;
+                IsMoveRightUp = true;
+            }
+            else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()){
+                IsMoveLeft = false;
+                IsMoveRight = true;
+            }
+            else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()){
+                IsMoveLeft = false;
+                IsMoveRightDown = true;
             }
             if (pong.getX() < 0){
                 pong.setX(WIDTH / 2);
+                pong.setY(HEIGHT / 2);
+                IsMoveLeft = true;
+                IsMoveRight = false;
+                IsMoveRightUp = false;
+                IsMoveRightDown = false;
+                IsMoveLeftUp = false;
+                IsMoveLeftDown = false;
+            }
+        }
+        else if (IsMoveLeftUp){
+            pong.setX(pong.getX() - 2);
+            pong.setY(pong.getY() - 2);
+            if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()){
+                IsMoveLeftUp = false;
+                IsMoveRightUp = true;
+            }
+            else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()){
+                IsMoveLeftUp = false;
                 IsMoveRight = true;
+            }
+            else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()){
+                IsMoveLeftUp = false;
+                IsMoveRightDown = true;
+            }
+            if (pong.getX() < 0){
+                pong.setX(WIDTH / 2);
+                pong.setY(HEIGHT / 2);
+                IsMoveLeft = true;
+                IsMoveRight = false;
+                IsMoveRightUp = false;
+                IsMoveRightDown = false;
+                IsMoveLeftUp = false;
+                IsMoveLeftDown = false;
+            }
+            if (pong.getY() == 0){
+                IsMoveLeftUp = false;
+                IsMoveLeftDown = true;
+            }
+        }
+        else if (IsMoveLeftDown){
+            pong.setX(pong.getX() - 2);
+            pong.setY(pong.getY() + 2);
+            if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()){
+                IsMoveLeftDown = false;
+                IsMoveRightUp = true;
+            }
+            else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()){
+                IsMoveLeftDown = false;
+                IsMoveRight = true;
+            }
+            else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()){
+                IsMoveLeftDown = false;
+                IsMoveRightDown = true;
+            }
+            if (pong.getX() < 0){
+                pong.setX(WIDTH / 2);
+                pong.setY(HEIGHT / 2);
+                IsMoveLeft = true;
+                IsMoveRight = false;
+                IsMoveRightUp = false;
+                IsMoveRightDown = false;
+                IsMoveLeftUp = false;
+                IsMoveLeftDown = false;
+            }
+            if (pong.getY() == HEIGHT){
+                IsMoveLeftDown = false;
+                IsMoveLeftUp = true;
             }
         }
     }
-
 }

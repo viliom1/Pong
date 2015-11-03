@@ -2,7 +2,7 @@ public class Platform {
     private int x;
     private int y;
     private final int WIDTH = 10;
-    private final int HEIGHT = 50;
+    private final int HEIGHT = 60;
 
     public Platform (int x, int y) {
         this.x = x;
