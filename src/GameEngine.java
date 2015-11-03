@@ -7,14 +7,14 @@ import java.awt.image.DataBufferInt;
 public class GameEngine extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = 300;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;
     //public static final int SCALE = 3;
     public static final String NAME = "Pong";
 
     private JFrame frame;
     private Platform platformOne = new Platform(10, 120);
-    private Platform platformTwo = new Platform(390, 120);
+    private Platform platformTwo = new Platform(790, 120);
     private Pong pong = new Pong(WIDTH / 2, HEIGHT / 2);
 
     public boolean running = false;
@@ -104,6 +104,7 @@ public class GameEngine extends Canvas implements Runnable {
         }
 
         movePong();
+        Ai();
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = i * tickCount;
@@ -146,6 +147,7 @@ public class GameEngine extends Canvas implements Runnable {
     public synchronized GameEngine start() {
         running = true;
         new Thread(this).start();
+
         return null;
     }
 
@@ -154,27 +156,65 @@ public class GameEngine extends Canvas implements Runnable {
     }
 
     public void moveP1Up() {
-        if (platformOne.getY() - 10 >= 10) {
-            platformOne.setY(platformOne.getY() - 10);
+        if (platformOne.getY() - 5 >= 10) {
+            platformOne.setY(platformOne.getY() - 5);
         }
     }
 
     public void moveP1Down() {
-        if (platformOne.getY() + 10 <= 240) {
-            platformOne.setY(platformOne.getY() + 10);
+        if (platformOne.getY() + 5 <= 540) {
+            platformOne.setY(platformOne.getY() + 5);
         }
     }
     public void moveP2Up() {
-        if (platformTwo.getY() - 10 >= 10) {
-            platformTwo.setY(platformTwo.getY() - 10);
+        if (platformTwo.getY() - 3>= 10) {
+            platformTwo.setY(platformTwo.getY() - 3);
         }
     }
 
     public void moveP2Down() {
-        if (platformTwo.getY() + 10 <= 240) {
-            platformTwo.setY(platformTwo.getY() + 10);
+        if (platformTwo.getY() + 3 <= 540) {
+            platformTwo.setY(platformTwo.getY() + 3);
         }
     }
+
+
+    public void Ai(){
+
+        int pongYFinal = getPongYFinal(pong.getX(), pong.getY());
+
+        if(pongYFinal > platformTwo.getY() + platformTwo.getHeight() && (IsMoveRight || IsMoveRightUp || IsMoveRightDown)){
+            moveP2Down();
+        }
+        if(pongYFinal < platformTwo.getY() && (IsMoveRight || IsMoveRightUp || IsMoveRightDown)){
+            moveP2Up();
+        }
+
+    }
+
+    private int getPongYFinal(int x, int y) {
+        int tempX = x;
+        int tempY = y;
+        if(IsMoveRight){
+            return pong.getY();
+        }
+        if(IsMoveRightUp){
+            while(tempX < WIDTH && tempY > 0){
+                tempX++;
+                tempY--;
+            }
+            return tempY;
+        }
+        if (IsMoveRightDown){
+            while(tempX < WIDTH && tempY < HEIGHT ){
+                tempX++;
+                tempY++;
+            }
+            return tempY;
+        }
+        return HEIGHT / 2;
+    }
+
     //move Pong
     boolean IsMoveRight = true;
     boolean IsMoveRightUp = false;
@@ -184,7 +224,7 @@ public class GameEngine extends Canvas implements Runnable {
     boolean IsMoveLeftDown = false;
     public void movePong(){
         if (IsMoveRight){
-            pong.setX(pong.getX() + 2);
+            pong.setX(pong.getX() + 5);
             if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()){
                 IsMoveRight = false;
                 IsMoveLeftUp = true;
@@ -209,8 +249,8 @@ public class GameEngine extends Canvas implements Runnable {
             }
         }
         else if (IsMoveRightUp){
-            pong.setX(pong.getX() + 2);
-            pong.setY(pong.getY() - 2);
+            pong.setX(pong.getX() + 5);
+            pong.setY(pong.getY() - 5);
             if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()){
                 IsMoveRightUp = false;
                 IsMoveLeftUp = true;
@@ -239,8 +279,8 @@ public class GameEngine extends Canvas implements Runnable {
             }
         }
         else if (IsMoveRightDown){
-            pong.setX(pong.getX() + 2);
-            pong.setY(pong.getY() + 2);
+            pong.setX(pong.getX() + 5);
+            pong.setY(pong.getY() + 5);
             if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()){
                 IsMoveRightDown = false;
                 IsMoveLeftUp = true;
@@ -269,7 +309,7 @@ public class GameEngine extends Canvas implements Runnable {
             }
         }
         else if (IsMoveLeft){
-            pong.setX(pong.getX() - 2);
+            pong.setX(pong.getX() - 5);
             if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()){
                 IsMoveLeft = false;
                 IsMoveRightUp = true;
@@ -294,8 +334,8 @@ public class GameEngine extends Canvas implements Runnable {
             }
         }
         else if (IsMoveLeftUp){
-            pong.setX(pong.getX() - 2);
-            pong.setY(pong.getY() - 2);
+            pong.setX(pong.getX() - 5);
+            pong.setY(pong.getY() - 5);
             if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()){
                 IsMoveLeftUp = false;
                 IsMoveRightUp = true;
@@ -324,8 +364,8 @@ public class GameEngine extends Canvas implements Runnable {
             }
         }
         else if (IsMoveLeftDown){
-            pong.setX(pong.getX() - 2);
-            pong.setY(pong.getY() + 2);
+            pong.setX(pong.getX() - 5);
+            pong.setY(pong.getY() + 5);
             if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()){
                 IsMoveLeftDown = false;
                 IsMoveRightUp = true;
