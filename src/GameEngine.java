@@ -107,12 +107,9 @@ public class GameEngine extends Canvas implements Runnable {
             moveP2Down();
         }
 
-        movePong();
-
         Ai();
-
+        movePong();
         printScore = playerOneScore + " : " + playerTwoScore;
-
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = i * tickCount;
@@ -158,7 +155,6 @@ public class GameEngine extends Canvas implements Runnable {
     public synchronized GameEngine start() {
         running = true;
         new Thread(this).start();
-
         return null;
     }
 
@@ -178,7 +174,7 @@ public class GameEngine extends Canvas implements Runnable {
         }
     }
     public void moveP2Up() {
-        if (platformTwo.getY() - 3>= 10) {
+        if (platformTwo.getY() - 3 >= 10) {
             platformTwo.setY(platformTwo.getY() - 3);
         }
     }
@@ -188,8 +184,6 @@ public class GameEngine extends Canvas implements Runnable {
             platformTwo.setY(platformTwo.getY() + 3);
         }
     }
-
-
 
     public void Ai(){
 
@@ -227,10 +221,8 @@ public class GameEngine extends Canvas implements Runnable {
         return HEIGHT / 2;
     }
 
-    //move Pong
 
     //Move Pong in six different directions
-
     boolean IsMoveRight = true;
     boolean IsMoveRightUp = false;
     boolean IsMoveRightDown = false;
