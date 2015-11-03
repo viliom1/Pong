@@ -20,6 +20,10 @@ public class GameEngine extends Canvas implements Runnable {
     public boolean running = false;
     public int tickCount = 0;
 
+    public int playerOneScore = 0;
+    public int playerTwoScore = 0;
+    public String printScore = playerOneScore + " : " + playerTwoScore;
+
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
@@ -104,7 +108,11 @@ public class GameEngine extends Canvas implements Runnable {
         }
 
         movePong();
+
         Ai();
+
+        printScore = playerOneScore + " : " + playerTwoScore;
+
 
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = i * tickCount;
@@ -135,6 +143,9 @@ public class GameEngine extends Canvas implements Runnable {
         //draw pong
         g.setColor(Color.WHITE);
         g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
+
+        g.setColor(Color.WHITE);
+        g.drawString(printScore, WIDTH / 2 - (printScore.length() / 2), 10);
 
         g.dispose();
         bs.show();
@@ -179,6 +190,7 @@ public class GameEngine extends Canvas implements Runnable {
     }
 
 
+
     public void Ai(){
 
         int pongYFinal = getPongYFinal(pong.getX(), pong.getY());
@@ -216,6 +228,9 @@ public class GameEngine extends Canvas implements Runnable {
     }
 
     //move Pong
+
+    //Move Pong in six different directions
+
     boolean IsMoveRight = true;
     boolean IsMoveRightUp = false;
     boolean IsMoveRightDown = false;
@@ -240,12 +255,7 @@ public class GameEngine extends Canvas implements Runnable {
             if (pong.getX() > WIDTH){
                 pong.setX(WIDTH / 2);
                 pong.setY(HEIGHT / 2);
-                IsMoveRight = true;
-                IsMoveRightUp = false;
-                IsMoveRightDown = false;
-                IsMoveLeft = false;
-                IsMoveLeftUp = false;
-                IsMoveLeftDown = false;
+                playerOneScore++;
             }
         }
         else if (IsMoveRightUp){
@@ -268,10 +278,7 @@ public class GameEngine extends Canvas implements Runnable {
                 pong.setY(HEIGHT / 2);
                 IsMoveRight = true;
                 IsMoveRightUp = false;
-                IsMoveRightDown = false;
-                IsMoveLeft = false;
-                IsMoveLeftUp = false;
-                IsMoveLeftDown = false;
+                playerOneScore++;
             }
             if (pong.getY() == 0){
                 IsMoveRightUp = false;
@@ -297,11 +304,8 @@ public class GameEngine extends Canvas implements Runnable {
                 pong.setX(WIDTH / 2);
                 pong.setY(HEIGHT / 2);
                 IsMoveRight = true;
-                IsMoveRightUp = false;
                 IsMoveRightDown = false;
-                IsMoveLeft = false;
-                IsMoveLeftUp = false;
-                IsMoveLeftDown = false;
+                playerOneScore++;
             }
             if (pong.getY() == HEIGHT){
                 IsMoveRightDown = false;
@@ -325,12 +329,7 @@ public class GameEngine extends Canvas implements Runnable {
             if (pong.getX() < 0){
                 pong.setX(WIDTH / 2);
                 pong.setY(HEIGHT / 2);
-                IsMoveLeft = true;
-                IsMoveRight = false;
-                IsMoveRightUp = false;
-                IsMoveRightDown = false;
-                IsMoveLeftUp = false;
-                IsMoveLeftDown = false;
+                playerTwoScore++;
             }
         }
         else if (IsMoveLeftUp){
@@ -352,11 +351,8 @@ public class GameEngine extends Canvas implements Runnable {
                 pong.setX(WIDTH / 2);
                 pong.setY(HEIGHT / 2);
                 IsMoveLeft = true;
-                IsMoveRight = false;
-                IsMoveRightUp = false;
-                IsMoveRightDown = false;
                 IsMoveLeftUp = false;
-                IsMoveLeftDown = false;
+                playerTwoScore++;
             }
             if (pong.getY() == 0){
                 IsMoveLeftUp = false;
@@ -382,11 +378,8 @@ public class GameEngine extends Canvas implements Runnable {
                 pong.setX(WIDTH / 2);
                 pong.setY(HEIGHT / 2);
                 IsMoveLeft = true;
-                IsMoveRight = false;
-                IsMoveRightUp = false;
-                IsMoveRightDown = false;
-                IsMoveLeftUp = false;
                 IsMoveLeftDown = false;
+                playerTwoScore++;
             }
             if (pong.getY() == HEIGHT){
                 IsMoveLeftDown = false;
