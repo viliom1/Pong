@@ -32,4 +32,5 @@ public class Pong {
     public int getHeight() {
         return HEIGHT;
     }
+
 }

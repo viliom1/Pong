@@ -25,7 +25,7 @@ public class GameEngine extends Canvas implements Runnable {
     public int playerOneScore = 0;
     public int playerTwoScore = 0;
     public int aiSpeed = 1;
-    public int playerOneSpeed = 5;
+    public static int playerOneSpeed = 5;
     public int pongSpeed = 5;
     public String printScore = playerOneScore + " : " + playerTwoScore;
 
@@ -101,16 +101,16 @@ public class GameEngine extends Canvas implements Runnable {
         tickCount++;
 
         if (input.p1Up.isPressed()){
-            moveP1Up();
+            platformOne.moveUp();
         }
         if (input.p1Down.isPressed()){
-            moveP1Down();
+            platformOne.moveDown();
         }
         if (input.p2Up.isPressed()){
-            moveP2Up();
+            platformTwo.moveUp();
         }
         if (input.p2Down.isPressed()){
-            moveP2Down();
+            platformTwo.moveDown();
         }
 
         if(pongHold > 0){
@@ -178,30 +178,6 @@ public class GameEngine extends Canvas implements Runnable {
         running = false;
     }
 
-    public void moveP1Up() {
-        if (platformOne.getY() - playerOneSpeed >= 10) {
-            platformOne.setY(platformOne.getY() - playerOneSpeed);
-        }
-    }
-
-    public void moveP1Down() {
-        if (platformOne.getY() + playerOneSpeed <= 540) {
-            platformOne.setY(platformOne.getY() + playerOneSpeed);
-        }
-    }
-    public void moveP2Up() {
-        if (platformTwo.getY() - aiSpeed >= 10) {
-            platformTwo.setY(platformTwo.getY() - aiSpeed);
-        }
-    }
-
-    public void moveP2Down() {
-        if (platformTwo.getY() + aiSpeed <= 540) {
-            platformTwo.setY(platformTwo.getY() + aiSpeed);
-        }
-    }
-
-
 
     int[] offsetArray = {-5,-10,-15,-20,-25,-30,-35,0,5,10,15,20,25,30,35};
     Random generator = new Random();
@@ -220,12 +196,12 @@ public class GameEngine extends Canvas implements Runnable {
 
         if(pongYFinal > platformTwo.getY() + randomDistance && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > WIDTH/4){
 
-                moveP2Down();
+                platformTwo.moveDown();
 
         }
         if(pongYFinal < (platformTwo.getY() + platformTwo.getHeight()) - randomDistance  && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > WIDTH/2){
 
-                moveP2Up();
+                platformTwo.moveUp();
 
         }
 

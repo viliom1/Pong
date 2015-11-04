@@ -32,4 +32,16 @@ public class Platform {
     public int getHeight() {
         return HEIGHT;
     }
+
+    public void moveUp() {
+        if (this.getY() - GameEngine.playerOneSpeed >= 10) {
+            this.setY(this.getY() - GameEngine.playerOneSpeed);
+        }
+    }
+
+    public void moveDown() {
+        if (this.getY() + GameEngine.playerOneSpeed <= 540) {
+            this.setY(this.getY() + GameEngine.playerOneSpeed);
+        }
+    }
 }
