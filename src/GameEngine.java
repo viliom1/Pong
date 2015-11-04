@@ -179,8 +179,6 @@ public class GameEngine extends Canvas implements Runnable {
 
     public void Ai(int offset){
 
-
-
         int pongYFinal = getPongYFinal(pong.getX(), pong.getY()) + offset;
 
         int platformMin = 0;

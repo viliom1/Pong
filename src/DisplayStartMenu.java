@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Display {
+public class DisplayStartMenu {
     private String title;
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
@@ -9,7 +9,7 @@ public class Display {
     private JFrame frame;
     private Canvas canvas;
 
-    public Display (String title) {
+    public DisplayStartMenu (String title) {
         init(title);
     }
 

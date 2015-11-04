@@ -2,7 +2,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GameEngine ge = new GameEngine().start();
+        StartMenu start = new StartMenu().start();
+        //GameEngine ge = new GameEngine().start();
 
         //boardPrint(board);
         menuPrint();

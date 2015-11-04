@@ -21,6 +21,14 @@ public class KeyInput implements KeyListener {
     public Key p1Down = new Key();
     public Key p2Down = new Key();
     public Key pause = new Key();
+    //for StartMenu
+    public Key up = new Key();
+    public Key down = new Key();
+    public Key choseMode = new Key();
+    public KeyInput(DisplayStartMenu frame){
+        frame.getCanvas().addKeyListener(this);
+    }
+
 
     public void keyTyped(KeyEvent e) {
     }
@@ -46,6 +54,15 @@ public class KeyInput implements KeyListener {
         if (keyCode == KeyEvent.VK_ESCAPE){
             // Not implemented yet
             pause.toggle(isPressed);
+        }
+        if (keyCode == KeyEvent.VK_UP){
+            up.toggle(isPressed);
+        }
+        if (keyCode == KeyEvent.VK_DOWN){
+            down.toggle(isPressed);
+        }
+        if (keyCode == KeyEvent.VK_ENTER){
+            choseMode.toggle(isPressed);
         }
     }
 }
