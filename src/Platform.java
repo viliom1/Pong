@@ -1,8 +1,8 @@
 public class Platform {
     private int x;
     private int y;
-    private final int WIDTH = 10;
-    private final int HEIGHT = 60;
+    public static final int WIDTH = 10;
+    public static final int HEIGHT = 60;
 
     public Platform (int x, int y) {
         this.x = x;
@@ -40,7 +40,7 @@ public class Platform {
     }
 
     public void moveDown() {
-        if (this.getY() + GameEngine.playerOneSpeed <= 540) {
+        if (this.getY() + GameEngine.playerOneSpeed <= Display.HEIGHT - 70) {
             this.setY(this.getY() + GameEngine.playerOneSpeed);
         }
     }

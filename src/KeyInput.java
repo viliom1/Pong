@@ -13,13 +13,14 @@ public class KeyInput implements KeyListener {
         }
     }
 
-    public KeyInput(GameEngine game){
-        game.addKeyListener(this);
+    public KeyInput(Display frame){
+        frame.getCanvas().addKeyListener(this);
     }
     public Key p1Up = new Key();
     public Key p2Up = new Key();
     public Key p1Down = new Key();
     public Key p2Down = new Key();
+    public Key pause = new Key();
 
     public void keyTyped(KeyEvent e) {
     }
@@ -41,6 +42,10 @@ public class KeyInput implements KeyListener {
         }
         if (keyCode == KeyEvent.VK_L){
             p2Down.toggle(isPressed);
+        }
+        if (keyCode == KeyEvent.VK_ESCAPE){
+            // Not implemented yet
+            pause.toggle(isPressed);
         }
     }
 }

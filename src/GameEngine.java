@@ -1,3 +1,4 @@
+import javax.print.attribute.standard.MediaSize;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -7,20 +8,22 @@ import java.util.Random;
 
 public class GameEngine extends Canvas implements Runnable {
 
-    private static final long serialVersionUID = 1L;
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
-    //public static final int SCALE = 3;
-    public static final String NAME = "Pong";
-
-    private JFrame frame;
-    private Platform platformOne = new Platform(10, 270);
-    private Platform platformTwo = new Platform(790, 270);
-    private Pong pong = new Pong(WIDTH / 2, HEIGHT / 2);
-
+    /* declaration of the Display class which holds JFrame and Canvas initializations */
+    Display frame = new Display(NAME);
+    BufferStrategy bs;
     public boolean running = false;
     public int tickCount = 0;
 
+    /* Game constants and states */
+    private static final long serialVersionUID = 1L;
+    public static final String NAME = "Pong";
+
+    /* Game objects */
+    private Platform platformOne = new Platform(10, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
+    private Platform platformTwo = new Platform(frame.getWidth() - 10 - Platform.WIDTH, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
+    private Pong pong = new Pong(frame.getWidth() / 2, frame.getHeight() / 2);
+
+    /* Local variables*/
     public int pongHold = 80;
     public int playerOneScore = 0;
     public int playerTwoScore = 0;
@@ -28,71 +31,59 @@ public class GameEngine extends Canvas implements Runnable {
     public static int playerOneSpeed = 5;
     public int pongSpeed = 5;
     public String printScore = playerOneScore + " : " + playerTwoScore;
+    public static boolean isPaused = false;
 
-    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    /* Buffer */
+    private BufferedImage image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
-    public KeyInput input = new KeyInput(this);
+    /* KeyInput object */
+    public KeyInput input = new KeyInput(frame);
 
     public GameEngine() {
-        //setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-        //setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-        //setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        setMaximumSize(new Dimension(WIDTH, HEIGHT));
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
-        frame = new JFrame(NAME);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-
-        frame.add(this, BorderLayout.CENTER);
-        frame.pack();
-
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        // constructor
     }
 
     public void run() {
-        long lastTime = System.nanoTime();
-        double nsPerTick = 1_000_000_000D / 60D;
+        while (!isPaused) {
+            long lastTime = System.nanoTime();
+            double nsPerTick = 1_000_000_000D / 60D;
 
-        int ticks = 0;
-        int frames = 0;
+            int ticks = 0;
+            int frames = 0;
 
-        long lastTimer = System.currentTimeMillis();
-        double delta = 0;
-        while (running) {
-            long now = System.nanoTime();
-            delta += (now - lastTime) / nsPerTick;
-            lastTime = now;
-            boolean shoudRender = true;
-            while (delta >= 1) {
-                ticks++;
-                tick();
-                delta -= 1;
-                shoudRender = true;
-            }
+            long lastTimer = System.currentTimeMillis();
+            double delta = 0;
+            while (running) {
+                long now = System.nanoTime();
+                delta += (now - lastTime) / nsPerTick;
+                lastTime = now;
+                boolean shoudRender = true;
+                while (delta >= 1) {
+                    ticks++;
+                    tick();
+                    delta -= 1;
+                    shoudRender = true;
+                }
 
-            try {
-                Thread.sleep(2);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                try {
+                    Thread.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
 
-            if (shoudRender) {
-                frames++;
-                render();
-            }
+                if (shoudRender) {
+                    frames++;
+                    render();
+                }
 
-            if (System.currentTimeMillis() - lastTimer >= 1000) {
-                lastTimer += 1000;
-                System.out.println("tick count: " + ticks + ", fps: " + frames);
-                frames = 0;
-                ticks = 0;
+                if (System.currentTimeMillis() - lastTimer >= 1000) {
+                    lastTimer += 1000;
+                    System.out.println("tick count: " + ticks + ", fps: " + frames);
+                    frames = 0;
+                    ticks = 0;
+                }
             }
         }
     }
@@ -124,7 +115,9 @@ public class GameEngine extends Canvas implements Runnable {
         }
 
         Ai(offset);
+
         movePong();
+
         printScore = playerOneScore + " : " + playerTwoScore;
 
         for (int i = 0; i < pixels.length; i++) {
@@ -133,9 +126,9 @@ public class GameEngine extends Canvas implements Runnable {
     }
 
     public void render() {
-        BufferStrategy bs = getBufferStrategy();
-        if (bs == null) {
-            createBufferStrategy(3);
+        this.bs = this.frame.getCanvas().getBufferStrategy();
+        if (this.bs == null) {
+            this.frame.getCanvas().createBufferStrategy(3);
             return;
         }
 
@@ -143,7 +136,7 @@ public class GameEngine extends Canvas implements Runnable {
 
         //background
         g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getWidth(), getHeight());
+        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
 
         //draw platform one
         g.setColor(Color.WHITE);
@@ -158,7 +151,7 @@ public class GameEngine extends Canvas implements Runnable {
         g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
 
         g.setColor(Color.WHITE);
-        g.drawString(printScore, WIDTH / 2 - (printScore.length() / 2), 10);
+        g.drawString(printScore, frame.getWidth() / 2 - (printScore.length() / 2), 10);
 
         g.dispose();
         bs.show();
@@ -181,7 +174,7 @@ public class GameEngine extends Canvas implements Runnable {
 
     int[] offsetArray = {-5,-10,-15,-20,-25,-30,-35,0,5,10,15,20,25,30,35};
     Random generator = new Random();
-    int offset = offsetArray[(generator.nextInt(21))];
+    int offset = offsetArray[(generator.nextInt(15))];
     boolean hasBeenOffset = false;
 
     public void Ai(int offset){
@@ -194,12 +187,12 @@ public class GameEngine extends Canvas implements Runnable {
         int platformMax = platformTwo.getHeight();
         int randomDistance = platformMin + (int)(Math.random() * ((platformMax  - platformMin) + 1));
 
-        if(pongYFinal > platformTwo.getY() + randomDistance && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > WIDTH/4){
+        if(pongYFinal > platformTwo.getY() + randomDistance && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > frame.getWidth()/4){
 
                 platformTwo.moveDown();
 
         }
-        if(pongYFinal < (platformTwo.getY() + platformTwo.getHeight()) - randomDistance  && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > WIDTH/2){
+        if(pongYFinal < (platformTwo.getY() + platformTwo.getHeight()) - randomDistance  && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > frame.getWidth()/2){
 
                 platformTwo.moveUp();
 
@@ -214,20 +207,20 @@ public class GameEngine extends Canvas implements Runnable {
             return pong.getY();
         }
         if(IsMoveRightUp){
-            while(tempX < WIDTH && tempY > 0){
+            while(tempX < frame.getWidth() && tempY > 0){
                 tempX++;
                 tempY--;
             }
             return tempY;
         }
         if (IsMoveRightDown){
-            while(tempX < WIDTH && tempY < HEIGHT ){
+            while(tempX < frame.getWidth() && tempY < frame.getHeight() ){
                 tempX++;
                 tempY++;
             }
             return tempY;
         }
-        return HEIGHT / 2;
+        return frame.getHeight() / 2;
     }
 
 
@@ -257,9 +250,9 @@ public class GameEngine extends Canvas implements Runnable {
                     hasBeenOffset = true;
 
                 }
-                if (pong.getX() > WIDTH) {
-                    pong.setX(WIDTH / 2);
-                    pong.setY(HEIGHT / 2);
+                if (pong.getX() > frame.getWidth()) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
                     playerOneScore++;
                     aiSpeed++;
                     if (aiSpeed == 6) {
@@ -289,9 +282,9 @@ public class GameEngine extends Canvas implements Runnable {
                     hasBeenOffset = true;
 
                 }
-                if (pong.getX() > WIDTH) {
-                    pong.setX(WIDTH / 2);
-                    pong.setY(HEIGHT / 2);
+                if (pong.getX() > frame.getWidth()) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
                     IsMoveRight = true;
                     IsMoveRightUp = false;
                     playerOneScore++;
@@ -328,9 +321,9 @@ public class GameEngine extends Canvas implements Runnable {
                     hasBeenOffset = true;
 
                 }
-                if (pong.getX() > WIDTH) {
-                    pong.setX(WIDTH / 2);
-                    pong.setY(HEIGHT / 2);
+                if (pong.getX() > frame.getWidth()) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
                     IsMoveRight = true;
                     IsMoveRightDown = false;
                     playerOneScore++;
@@ -343,7 +336,7 @@ public class GameEngine extends Canvas implements Runnable {
                     hasBeenOffset = true;
 
                 }
-                if (pong.getY() == HEIGHT) {
+                if (pong.getY() == frame.getHeight()) {
                     IsMoveRightDown = false;
                     IsMoveRightUp = true;
                 }
@@ -366,8 +359,8 @@ public class GameEngine extends Canvas implements Runnable {
 
                 }
                 if (pong.getX() < 0) {
-                    pong.setX(WIDTH / 2);
-                    pong.setY(HEIGHT / 2);
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
                     playerTwoScore++;
                     pongHold = 80;
                     hasBeenOffset = true;
@@ -393,8 +386,8 @@ public class GameEngine extends Canvas implements Runnable {
 
                 }
                 if (pong.getX() < 0) {
-                    pong.setX(WIDTH / 2);
-                    pong.setY(HEIGHT / 2);
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
                     IsMoveLeft = true;
                     IsMoveLeftUp = false;
                     playerTwoScore++;
@@ -426,8 +419,8 @@ public class GameEngine extends Canvas implements Runnable {
 
                 }
                 if (pong.getX() < 0) {
-                    pong.setX(WIDTH / 2);
-                    pong.setY(HEIGHT / 2);
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
                     IsMoveLeft = true;
                     IsMoveLeftDown = false;
                     playerTwoScore++;
@@ -435,7 +428,7 @@ public class GameEngine extends Canvas implements Runnable {
                     hasBeenOffset = true;
 
                 }
-                if (pong.getY() == HEIGHT) {
+                if (pong.getY() == frame.getHeight()) {
                     IsMoveLeftDown = false;
                     IsMoveLeftUp = true;
                 }
