@@ -34,14 +34,14 @@ public class Platform {
     }
 
     public void moveUp() {
-        if (this.getY() - GameEngine.playerOneSpeed >= 10) {
-            this.setY(this.getY() - GameEngine.playerOneSpeed);
+        if (this.getY() - MultiPlayer.playerOneSpeed >= 10) {
+            this.setY(this.getY() - MultiPlayer.playerOneSpeed);
         }
     }
 
     public void moveDown() {
-        if (this.getY() + GameEngine.playerOneSpeed <= Display.HEIGHT - 70) {
-            this.setY(this.getY() + GameEngine.playerOneSpeed);
+        if (this.getY() + MultiPlayer.playerOneSpeed <= Display.HEIGHT - 70) {
+            this.setY(this.getY() + MultiPlayer.playerOneSpeed);
         }
     }
 }

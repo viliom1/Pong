@@ -2,28 +2,20 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.Random;
 
 public class StartMenu extends Canvas implements Runnable {
 
     /* declaration of the Display class which holds JFrame and Canvas initializations */
-    DisplayStartMenu frame = new DisplayStartMenu(NAME);
+    Display frame = new Display(NAME);
     BufferStrategy bs;
     public boolean running = false;
     public int tickCount = 0;
 
     /* Game constants and states */
     private static final long serialVersionUID = 1L;
-    public static final String NAME = "StartMenu";
+    public static final String NAME = "Pong";
 
     /* Local variables*/
-    public int pongHold = 80;
-    public int playerOneScore = 0;
-    public int playerTwoScore = 0;
-    public int aiSpeed = 1;
-    public static int playerOneSpeed = 5;
-    public int pongSpeed = 5;
-    public String printScore = playerOneScore + " : " + playerTwoScore;
     public static boolean isPaused = false;
 
     /* Buffer */
@@ -93,7 +85,12 @@ public class StartMenu extends Canvas implements Runnable {
             rectangle.moveDown();
         }
         if (input.choseMode.isPressed()){
-            GameEngine gameEngine = new GameEngine().start();
+            if (rectangle.getY() < 200){
+                SinglePlayer singlePlayer = new SinglePlayer().start();
+            }
+            else{
+                MultiPlayer multiPlayer = new MultiPlayer().start();
+            }
             running = false;
         }
 
@@ -129,7 +126,7 @@ public class StartMenu extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        new GameEngine().start();
+        new MultiPlayer().start();
     }
 
     public synchronized StartMenu start() {

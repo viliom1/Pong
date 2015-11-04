@@ -25,9 +25,6 @@ public class KeyInput implements KeyListener {
     public Key up = new Key();
     public Key down = new Key();
     public Key choseMode = new Key();
-    public KeyInput(DisplayStartMenu frame){
-        frame.getCanvas().addKeyListener(this);
-    }
 
 
     public void keyTyped(KeyEvent e) {
