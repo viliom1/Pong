@@ -3,7 +3,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
-public class StartMenu extends Canvas implements Runnable {
+public class SinglePlayerMenu extends Canvas implements Runnable {
 
     /* declaration of the Display class which holds JFrame and Canvas initializations */
     Display frame = new Display(NAME);
@@ -27,7 +27,7 @@ public class StartMenu extends Canvas implements Runnable {
 
     private Rectangle rectangle = new Rectangle(366, 185);
 
-    public StartMenu() {
+    public SinglePlayerMenu() {
         // constructor
     }
 
@@ -86,10 +86,10 @@ public class StartMenu extends Canvas implements Runnable {
         }
         if (input.choseMode.isPressed()){
             if (rectangle.getY() < 200){
-                SinglePlayerMenu singlePlayerMenu = new SinglePlayerMenu().start();
+                SurvaivalMode survaivalMode = new SurvaivalMode().start();
             }
             else{
-                MultiPlayer multiPlayer = new MultiPlayer().start();
+                ZenMode zenMode = new ZenMode().start();
             }
             running = false;
             frame.dispouse();
@@ -114,10 +114,10 @@ public class StartMenu extends Canvas implements Runnable {
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
 
         g.setColor(Color.WHITE);
-        g.drawString("Single Player", 377, 200);
+        g.drawString("Survaival Mode", 372, 200);
 
         g.setColor(Color.WHITE);
-        g.drawString("Multi Player", 383, 300);
+        g.drawString("Zen Mode", 387, 300);
 
         g.setColor(Color.WHITE);
         g.drawRect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
@@ -127,10 +127,10 @@ public class StartMenu extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        new StartMenu().start();
+        new SinglePlayerMenu().start();
     }
 
-    public synchronized StartMenu start() {
+    public synchronized SinglePlayerMenu start() {
         running = true;
         new Thread(this).start();
         return null;

@@ -18,7 +18,7 @@ public class Display {
         this.frame = new JFrame(title);
         //this.frame.setFocusable(true);
         this.frame.setResizable(false);
-        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         /* initialize Canvas to add to the frame */
         this.canvas = new Canvas();
@@ -47,4 +47,9 @@ public class Display {
     public int getWidth() {
         return this.WIDTH;
     }
+
+    public void dispouse(){
+        frame.dispose();
+    }
+
 }

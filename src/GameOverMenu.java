@@ -3,7 +3,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
-public class StartMenu extends Canvas implements Runnable {
+public class GameOverMenu extends Canvas implements Runnable {
 
     /* declaration of the Display class which holds JFrame and Canvas initializations */
     Display frame = new Display(NAME);
@@ -27,7 +27,7 @@ public class StartMenu extends Canvas implements Runnable {
 
     private Rectangle rectangle = new Rectangle(366, 185);
 
-    public StartMenu() {
+    public GameOverMenu() {
         // constructor
     }
 
@@ -86,13 +86,13 @@ public class StartMenu extends Canvas implements Runnable {
         }
         if (input.choseMode.isPressed()){
             if (rectangle.getY() < 200){
-                SinglePlayerMenu singlePlayerMenu = new SinglePlayerMenu().start();
+                StartMenu startMenu = new StartMenu().start();
+                running = false;
+                frame.dispouse();
             }
             else{
-                MultiPlayer multiPlayer = new MultiPlayer().start();
+                System.exit(0);
             }
-            running = false;
-            frame.dispouse();
         }
 
         for (int i = 0; i < pixels.length; i++) {
@@ -114,10 +114,16 @@ public class StartMenu extends Canvas implements Runnable {
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
 
         g.setColor(Color.WHITE);
-        g.drawString("Single Player", 377, 200);
+        g.drawString("GAME OVER", 379, 70);
 
         g.setColor(Color.WHITE);
-        g.drawString("Multi Player", 383, 300);
+        g.drawString("Your Score is " + SurvaivalMode.getScore(), 372, 120);
+
+        g.setColor(Color.WHITE);
+        g.drawString("New Game", 383, 200);
+
+        g.setColor(Color.WHITE);
+        g.drawString("Exit", 404, 300);
 
         g.setColor(Color.WHITE);
         g.drawRect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
@@ -127,10 +133,10 @@ public class StartMenu extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        new StartMenu().start();
+        new GameOverMenu().start();
     }
 
-    public synchronized StartMenu start() {
+    public synchronized GameOverMenu start() {
         running = true;
         new Thread(this).start();
         return null;
