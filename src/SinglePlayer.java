@@ -89,10 +89,10 @@ public class SinglePlayer extends Canvas implements Runnable {
     public void tick() {
         tickCount++;
 
-        if (input.p1Up.isPressed()){
+        if (input.p1Up.isPressed() && !isPaused){
             platformOne.moveUp();
         }
-        if (input.p1Down.isPressed()){
+        if (input.p1Down.isPressed() && !isPaused){
             platformOne.moveDown();
         }
         if (input.pause.isPressed()) {
