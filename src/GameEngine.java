@@ -45,7 +45,7 @@ public class GameEngine extends Canvas implements Runnable {
     }
 
     public void run() {
-        while (!isPaused) {
+        while (true) {
             long lastTime = System.nanoTime();
             double nsPerTick = 1_000_000_000D / 60D;
 
@@ -73,7 +73,7 @@ public class GameEngine extends Canvas implements Runnable {
                 }
 
 
-                if (shoudRender) {
+                if (shoudRender && !isPaused) {
                     frames++;
                     render();
                 }
@@ -103,7 +103,9 @@ public class GameEngine extends Canvas implements Runnable {
         if (input.p2Down.isPressed()){
             platformTwo.moveDown();
         }
-
+        if (input.pause.isPressed()) {
+            isPaused = !isPaused;
+        }
         if(pongHold > 0){
             pongHold--;
         }
@@ -184,16 +186,17 @@ public class GameEngine extends Canvas implements Runnable {
         int platformMin = 0;
         int platformMax = platformTwo.getHeight();
         int randomDistance = platformMin + (int)(Math.random() * ((platformMax  - platformMin) + 1));
-
-        if(pongYFinal > platformTwo.getY() + randomDistance && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > frame.getWidth()/4){
+        if (!isPaused) {
+            if (pongYFinal > platformTwo.getY() + randomDistance && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > frame.getWidth() / 4) {
 
                 platformTwo.moveDown();
 
-        }
-        if(pongYFinal < (platformTwo.getY() + platformTwo.getHeight()) - randomDistance  && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > frame.getWidth()/2){
+            }
+            if (pongYFinal < (platformTwo.getY() + platformTwo.getHeight()) - randomDistance && (IsMoveRight || IsMoveRightUp || IsMoveRightDown) && pong.getX() > frame.getWidth() / 2) {
 
                 platformTwo.moveUp();
 
+            }
         }
 
     }
@@ -201,22 +204,24 @@ public class GameEngine extends Canvas implements Runnable {
     private int getPongYFinal(int x, int y) {
         int tempX = x;
         int tempY = y;
-        if(IsMoveRight){
-            return pong.getY();
-        }
-        if(IsMoveRightUp){
-            while(tempX < frame.getWidth() && tempY > 0){
-                tempX++;
-                tempY--;
+        if (!isPaused) {
+            if (IsMoveRight) {
+                return pong.getY();
             }
-            return tempY;
-        }
-        if (IsMoveRightDown){
-            while(tempX < frame.getWidth() && tempY < frame.getHeight() ){
-                tempX++;
-                tempY++;
+            if (IsMoveRightUp) {
+                while (tempX < frame.getWidth() && tempY > 0) {
+                    tempX++;
+                    tempY--;
+                }
+                return tempY;
             }
-            return tempY;
+            if (IsMoveRightDown) {
+                while (tempX < frame.getWidth() && tempY < frame.getHeight()) {
+                    tempX++;
+                    tempY++;
+                }
+                return tempY;
+            }
         }
         return frame.getHeight() / 2;
     }
