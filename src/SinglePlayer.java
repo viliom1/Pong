@@ -17,8 +17,8 @@ public class SinglePlayer extends Canvas implements Runnable {
     public static final String NAME = "Pong";
 
     /* Game objects */
-    private Platform platformOne = new Platform(10, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
-    private Platform platformTwo = new Platform(frame.getWidth() - 10 - Platform.WIDTH, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
+    public Platform platformOne = new Platform(10, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
+    public Platform platformTwo = new Platform(frame.getWidth() - 10 - Platform.WIDTH, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
     private Pong pong = new Pong(frame.getWidth() / 2, frame.getHeight() / 2);
 
     /* Local variables*/
@@ -88,6 +88,9 @@ public class SinglePlayer extends Canvas implements Runnable {
 
     public void tick() {
         tickCount++;
+
+        platformOne.setSpeed(playerOneSpeed);
+        platformTwo.setSpeed(aiSpeed);
 
         if (input.p1Up.isPressed() && !isPaused){
             platformOne.moveUp();
@@ -227,207 +230,225 @@ public class SinglePlayer extends Canvas implements Runnable {
     boolean IsMoveLeftUp = false;
     boolean IsMoveLeftDown = false;
     public void movePong(){
-        if (!isPaused) {
-            if (pongHold <= 0) {
-                if (IsMoveRight) {
-                    pong.setX(pong.getX() + pongSpeed);
-                    if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRight = false;
-                        IsMoveLeftUp = true;
-                        hasBeenOffset = true;
-                    } else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRight = false;
-                        IsMoveLeft = true;
-                        hasBeenOffset = true;
+        // necessary temporary speed variable in order to control it without changing pongSpeed which remains constant trough the whole round
+        int tempSpeed = pongSpeed;
+        if(pongHold <= 0) {
+            if (IsMoveRight) {
+                while ((pong.getX() < platformTwo.getX()) && ((pong.getX() + tempSpeed) > platformTwo.getX())){
+                    tempSpeed--;
+                }
+                pong.setX(pong.getX() + tempSpeed);
+                if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRight = false;
+                    IsMoveLeftUp = true;
+                    hasBeenOffset = true;
+                } else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRight = false;
+                    IsMoveLeft = true;
+                    hasBeenOffset = true;
 
-                    } else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRight = false;
-                        IsMoveLeftDown = true;
-                        hasBeenOffset = true;
+                } else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRight = false;
+                    IsMoveLeftDown = true;
+                    hasBeenOffset = true;
 
+                }
+                if (pong.getX() > frame.getWidth()) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
+                    playerOneScore++;
+                    aiSpeed++;
+                    if (playerOneScore % 3 == 0) {
+                        pongSpeed++;
+                        playerOneSpeed += 1;
                     }
-                    if (pong.getX() > frame.getWidth()) {
-                        pong.setX(frame.getWidth() / 2);
-                        pong.setY(frame.getHeight() / 2);
-                        playerOneScore++;
-                        aiSpeed++;
-                        if (aiSpeed == 6) {
-                            pongSpeed++;
-                            playerOneSpeed += 2;
-                        }
-                        pongHold = 80;
-                        hasBeenOffset = true;
+                    pongHold = 80;
+                    hasBeenOffset = true;
 
+                }
+            } else if (IsMoveRightUp) {
+                while ((pong.getX() < platformTwo.getX()) && ((pong.getX() + tempSpeed) > platformTwo.getX())){
+                    tempSpeed--;
+                }
+                pong.setX(pong.getX() + tempSpeed);
+                pong.setY(pong.getY() - tempSpeed);
+                if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRightUp = false;
+                    IsMoveLeftUp = true;
+                    hasBeenOffset = true;
+
+                } else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRightUp = false;
+                    IsMoveLeft = true;
+                    hasBeenOffset = true;
+
+                } else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRightUp = false;
+                    IsMoveLeftDown = true;
+                    hasBeenOffset = true;
+
+                }
+                if (pong.getX() > frame.getWidth()) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
+                    IsMoveRight = true;
+                    IsMoveRightUp = false;
+                    playerOneScore++;
+                    aiSpeed++;
+                    if (playerOneScore % 3 == 0) {
+                        pongSpeed++;
+                        playerOneSpeed += 1;
                     }
-                } else if (IsMoveRightUp) {
-                    pong.setX(pong.getX() + pongSpeed);
-                    pong.setY(pong.getY() - pongSpeed);
-                    if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRightUp = false;
-                        IsMoveLeftUp = true;
-                        hasBeenOffset = true;
 
-                    } else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRightUp = false;
-                        IsMoveLeft = true;
-                        hasBeenOffset = true;
+                    pongHold = 80;
+                    hasBeenOffset = true;
 
-                    } else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRightUp = false;
-                        IsMoveLeftDown = true;
-                        hasBeenOffset = true;
+                }
+                if (pong.getY() <= 0) {
+                    IsMoveRightUp = false;
+                    IsMoveRightDown = true;
 
+
+                }
+            } else if (IsMoveRightDown) {
+                while ((pong.getX() < platformTwo.getX()) && ((pong.getX() + tempSpeed) > platformTwo.getX())){
+                    tempSpeed--;
+                }
+                pong.setX(pong.getX() + tempSpeed);
+                pong.setY(pong.getY() + tempSpeed);
+                if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRightDown = false;
+                    IsMoveLeftUp = true;
+                    hasBeenOffset = true;
+
+                } else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRightDown = false;
+                    IsMoveLeft = true;
+                } else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()) {
+                    IsMoveRightDown = false;
+                    IsMoveLeftDown = true;
+                    hasBeenOffset = true;
+
+                }
+                if (pong.getX() > frame.getWidth()) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
+                    IsMoveRight = true;
+                    IsMoveRightDown = false;
+                    playerOneScore++;
+                    aiSpeed++;
+                    if (playerOneScore % 3 == 0) {
+                        pongSpeed++;
+                        playerOneSpeed += 1;
                     }
-                    if (pong.getX() > frame.getWidth()) {
-                        pong.setX(frame.getWidth() / 2);
-                        pong.setY(frame.getHeight() / 2);
-                        IsMoveRight = true;
-                        IsMoveRightUp = false;
-                        playerOneScore++;
-                        aiSpeed++;
-                        if (aiSpeed == 6) {
-                            pongSpeed++;
-                            playerOneSpeed += 2;
-                        }
+                    pongHold = 80;
+                    hasBeenOffset = true;
 
-                        pongHold = 80;
-                        hasBeenOffset = true;
+                }
+                if (pong.getY() >= frame.getHeight()) {
+                    IsMoveRightDown = false;
+                    IsMoveRightUp = true;
+                }
+            } else if (IsMoveLeft) {
+                while((pong.getX() > platformOne.getX()) && ((pong.getX() - tempSpeed) < platformOne.getX())){
+                    tempSpeed--;
+                }
+                pong.setX(pong.getX() - tempSpeed);
+                if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeft = false;
+                    IsMoveRightUp = true;
+                    hasBeenOffset = true;
 
-                    }
-                    if (pong.getY() == 0) {
-                        IsMoveRightUp = false;
-                        IsMoveRightDown = true;
+                } else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeft = false;
+                    IsMoveRight = true;
+                    hasBeenOffset = true;
 
+                } else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeft = false;
+                    IsMoveRightDown = true;
+                    hasBeenOffset = true;
 
-                    }
-                } else if (IsMoveRightDown) {
-                    pong.setX(pong.getX() + pongSpeed);
-                    pong.setY(pong.getY() + pongSpeed);
-                    if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRightDown = false;
-                        IsMoveLeftUp = true;
-                        hasBeenOffset = true;
+                }
+                if (pong.getX() < 0) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
+                    playerTwoScore++;
+                    pongHold = 80;
+                    hasBeenOffset = true;
 
-                    } else if (pong.getY() >= platformTwo.getY() + 20 && pong.getY() <= platformTwo.getY() + 40 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRightDown = false;
-                        IsMoveLeft = true;
-                    } else if (pong.getY() >= platformTwo.getY() + 40 && pong.getY() <= platformTwo.getY() + 60 && pong.getX() == platformTwo.getX()) {
-                        IsMoveRightDown = false;
-                        IsMoveLeftDown = true;
-                        hasBeenOffset = true;
+                }
+            } else if (IsMoveLeftUp) {
+                while((pong.getX() > platformOne.getX()) && ((pong.getX() - tempSpeed) < platformOne.getX())){
+                    tempSpeed--;
+                }
+                pong.setX(pong.getX() - tempSpeed);
+                pong.setY(pong.getY() - tempSpeed);
+                if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeftUp = false;
+                    IsMoveRightUp = true;
+                    hasBeenOffset = true;
 
-                    }
-                    if (pong.getX() > frame.getWidth()) {
-                        pong.setX(frame.getWidth() / 2);
-                        pong.setY(frame.getHeight() / 2);
-                        IsMoveRight = true;
-                        IsMoveRightDown = false;
-                        playerOneScore++;
-                        aiSpeed++;
-                        if (aiSpeed == 6) {
-                            pongSpeed++;
-                            playerOneSpeed += 2;
-                        }
-                        pongHold = 80;
-                        hasBeenOffset = true;
+                } else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeftUp = false;
+                    IsMoveRight = true;
+                    hasBeenOffset = true;
 
-                    }
-                    if (pong.getY() == frame.getHeight()) {
-                        IsMoveRightDown = false;
-                        IsMoveRightUp = true;
-                    }
-                } else if (IsMoveLeft) {
-                    pong.setX(pong.getX() - pongSpeed);
-                    if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeft = false;
-                        IsMoveRightUp = true;
-                        hasBeenOffset = true;
+                } else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeftUp = false;
+                    IsMoveRightDown = true;
+                    hasBeenOffset = true;
 
-                    } else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeft = false;
-                        IsMoveRight = true;
-                        hasBeenOffset = true;
+                }
+                if (pong.getX() < 0) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
+                    IsMoveLeft = true;
+                    IsMoveLeftUp = false;
+                    playerTwoScore++;
+                    pongHold = 80;
+                    hasBeenOffset = true;
 
-                    } else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeft = false;
-                        IsMoveRightDown = true;
-                        hasBeenOffset = true;
+                }
+                if (pong.getY() <= 0) {
+                    IsMoveLeftUp = false;
+                    IsMoveLeftDown = true;
+                }
+            } else if (IsMoveLeftDown) {
+                while((pong.getX() > platformOne.getX()) && ((pong.getX() - tempSpeed) < platformOne.getX())){
+                    tempSpeed--;
+                }
+                pong.setX(pong.getX() - tempSpeed);
+                pong.setY(pong.getY() + tempSpeed);
+                if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeftDown = false;
+                    IsMoveRightUp = true;
+                    hasBeenOffset = true;
 
-                    }
-                    if (pong.getX() < 0) {
-                        pong.setX(frame.getWidth() / 2);
-                        pong.setY(frame.getHeight() / 2);
-                        playerTwoScore++;
-                        pongHold = 80;
-                        hasBeenOffset = true;
+                } else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeftDown = false;
+                    IsMoveRight = true;
+                    hasBeenOffset = true;
 
-                    }
-                } else if (IsMoveLeftUp) {
-                    pong.setX(pong.getX() - pongSpeed);
-                    pong.setY(pong.getY() - pongSpeed);
-                    if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeftUp = false;
-                        IsMoveRightUp = true;
-                        hasBeenOffset = true;
+                } else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()) {
+                    IsMoveLeftDown = false;
+                    IsMoveRightDown = true;
+                    hasBeenOffset = true;
 
-                    } else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeftUp = false;
-                        IsMoveRight = true;
-                        hasBeenOffset = true;
+                }
+                if (pong.getX() < 0) {
+                    pong.setX(frame.getWidth() / 2);
+                    pong.setY(frame.getHeight() / 2);
+                    IsMoveLeft = true;
+                    IsMoveLeftDown = false;
+                    playerTwoScore++;
+                    pongHold = 80;
+                    hasBeenOffset = true;
 
-                    } else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeftUp = false;
-                        IsMoveRightDown = true;
-                        hasBeenOffset = true;
-
-                    }
-                    if (pong.getX() < 0) {
-                        pong.setX(frame.getWidth() / 2);
-                        pong.setY(frame.getHeight() / 2);
-                        IsMoveLeft = true;
-                        IsMoveLeftUp = false;
-                        playerTwoScore++;
-                        pongHold = 80;
-                        hasBeenOffset = true;
-
-                    }
-                    if (pong.getY() == 0) {
-                        IsMoveLeftUp = false;
-                        IsMoveLeftDown = true;
-                    }
-                } else if (IsMoveLeftDown) {
-                    pong.setX(pong.getX() - pongSpeed);
-                    pong.setY(pong.getY() + pongSpeed);
-                    if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeftDown = false;
-                        IsMoveRightUp = true;
-                        hasBeenOffset = true;
-
-                    } else if (pong.getY() >= platformOne.getY() + 20 && pong.getY() <= platformOne.getY() + 40 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeftDown = false;
-                        IsMoveRight = true;
-                        hasBeenOffset = true;
-
-                    } else if (pong.getY() >= platformOne.getY() + 40 && pong.getY() <= platformOne.getY() + 60 && pong.getX() == platformOne.getX()) {
-                        IsMoveLeftDown = false;
-                        IsMoveRightDown = true;
-                        hasBeenOffset = true;
-
-                    }
-                    if (pong.getX() < 0) {
-                        pong.setX(frame.getWidth() / 2);
-                        pong.setY(frame.getHeight() / 2);
-                        IsMoveLeft = true;
-                        IsMoveLeftDown = false;
-                        playerTwoScore++;
-                        pongHold = 80;
-                        hasBeenOffset = true;
-
-                    }
-                    if (pong.getY() == frame.getHeight()) {
-                        IsMoveLeftDown = false;
-                        IsMoveLeftUp = true;
-                    }
+                }
+                if (pong.getY() >= frame.getHeight()) {
+                    IsMoveLeftDown = false;
+                    IsMoveLeftUp = true;
                 }
             }
         }

@@ -3,10 +3,12 @@ public class Platform {
     private int y;
     public static final int WIDTH = 10;
     public static final int HEIGHT = 60;
+    private int speed;
 
     public Platform (int x, int y) {
         this.x = x;
         this.y = y;
+        this.speed = 5;
     }
 
     public int getX() {
@@ -25,6 +27,10 @@ public class Platform {
         this.y = y;
     }
 
+    public int getSpeed() {return  speed;}
+
+    public void setSpeed(int speed) {this.speed = speed;}
+
     public int getWidth() {
         return WIDTH;
     }
@@ -34,14 +40,14 @@ public class Platform {
     }
 
     public void moveUp() {
-        if (this.getY() - MultiPlayer.playerOneSpeed >= 10) {
-            this.setY(this.getY() - MultiPlayer.playerOneSpeed);
+        if (this.getY() - this.getSpeed() >= 10) {
+            this.setY(this.getY() - this.getSpeed());
         }
     }
 
     public void moveDown() {
-        if (this.getY() + MultiPlayer.playerOneSpeed <= Display.HEIGHT - 70) {
-            this.setY(this.getY() + MultiPlayer.playerOneSpeed);
+        if (this.getY() + this.getSpeed() <= Display.HEIGHT - 70) {
+            this.setY(this.getY() + this.getSpeed());
         }
     }
 }

@@ -16,15 +16,15 @@ public class MultiPlayer extends Canvas implements Runnable {
     public static final String NAME = "Pong";
 
     /* Game objects */
-    private Platform platformOne = new Platform(10, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
-    private Platform platformTwo = new Platform(frame.getWidth() - 10 - Platform.WIDTH, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
+    public Platform platformOne = new Platform(10, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
+    public Platform platformTwo = new Platform(frame.getWidth() - 10 - Platform.WIDTH, (frame.getHeight() / 2) - (Platform.HEIGHT / 2));
     private Pong pong = new Pong(frame.getWidth() / 2, frame.getHeight() / 2);
 
     /* Local variables*/
     public int pongHold = 80;
     public int playerOneScore = 0;
     public int playerTwoScore = 0;
-    public int aiSpeed = 1;
+    public static int playerTwoSpeed = 5;
     public static int playerOneSpeed = 5;
     public int pongSpeed = 5;
     public String printScore = playerOneScore + " : " + playerTwoScore;
@@ -87,6 +87,9 @@ public class MultiPlayer extends Canvas implements Runnable {
 
     public void tick() {
         tickCount++;
+
+        platformOne.setSpeed(playerOneSpeed);
+        platformTwo.setSpeed(playerTwoSpeed);
 
         if (input.p1Up.isPressed() && !isPaused){
             platformOne.moveUp();
@@ -171,10 +174,15 @@ public class MultiPlayer extends Canvas implements Runnable {
     boolean IsMoveLeftUp = false;
     boolean IsMoveLeftDown = false;
     public void movePong(){
+        // necessary temporary speed variable in order to control it without changing pongSpeed which remains constant trough the whole round
+        int tempSpeed = pongSpeed;
         if (!isPaused) {
             if (pongHold <= 0) {
                 if (IsMoveRight) {
-                    pong.setX(pong.getX() + pongSpeed);
+                    while ((pong.getX() < platformTwo.getX()) && ((pong.getX() + tempSpeed) > platformTwo.getX())){
+                        tempSpeed--;
+                    }
+                    pong.setX(pong.getX() + tempSpeed);
                     if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
                         IsMoveRight = false;
                         IsMoveLeftUp = true;
@@ -189,16 +197,19 @@ public class MultiPlayer extends Canvas implements Runnable {
                         pong.setX(frame.getWidth() / 2);
                         pong.setY(frame.getHeight() / 2);
                         playerOneScore++;
-                        aiSpeed++;
-                        if (aiSpeed == 6) {
-                            pongSpeed++;
-                            playerOneSpeed += 2;
-                        }
+                        //aiSpeed++;
+//                        if (aiSpeed == 6) {
+//                            pongSpeed++;
+//                            playerOneSpeed += 2;
+//                        }
                         pongHold = 80;
                     }
                 } else if (IsMoveRightUp) {
-                    pong.setX(pong.getX() + pongSpeed);
-                    pong.setY(pong.getY() - pongSpeed);
+                    while ((pong.getX() < platformTwo.getX()) && ((pong.getX() + tempSpeed) > platformTwo.getX())){
+                        tempSpeed--;
+                    }
+                    pong.setX(pong.getX() + tempSpeed);
+                    pong.setY(pong.getY() - tempSpeed);
                     if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
                         IsMoveRightUp = false;
                         IsMoveLeftUp = true;
@@ -215,20 +226,23 @@ public class MultiPlayer extends Canvas implements Runnable {
                         IsMoveRight = true;
                         IsMoveRightUp = false;
                         playerOneScore++;
-                        aiSpeed++;
-                        if (aiSpeed == 6) {
-                            pongSpeed++;
-                            playerOneSpeed += 2;
-                        }
+//                        aiSpeed++;
+//                        if (aiSpeed == 6) {
+//                            pongSpeed++;
+//                            playerOneSpeed += 2;
+//                        }
                         pongHold = 80;
                     }
-                    if (pong.getY() == 0) {
+                    if (pong.getY() <= 0) {
                         IsMoveRightUp = false;
                         IsMoveRightDown = true;
                     }
                 } else if (IsMoveRightDown) {
-                    pong.setX(pong.getX() + pongSpeed);
-                    pong.setY(pong.getY() + pongSpeed);
+                    while ((pong.getX() < platformTwo.getX()) && ((pong.getX() + tempSpeed) > platformTwo.getX())){
+                        tempSpeed--;
+                    }
+                    pong.setX(pong.getX() + tempSpeed);
+                    pong.setY(pong.getY() + tempSpeed);
                     if (pong.getY() >= platformTwo.getY() && pong.getY() <= platformTwo.getY() + 20 && pong.getX() == platformTwo.getX()) {
                         IsMoveRightDown = false;
                         IsMoveLeftUp = true;
@@ -245,19 +259,22 @@ public class MultiPlayer extends Canvas implements Runnable {
                         IsMoveRight = true;
                         IsMoveRightDown = false;
                         playerOneScore++;
-                        aiSpeed++;
-                        if (aiSpeed == 6) {
-                            pongSpeed++;
-                            playerOneSpeed += 2;
-                        }
+//                        aiSpeed++;
+//                        if (aiSpeed == 6) {
+//                            pongSpeed++;
+//                            playerOneSpeed += 2;
+//                        }
                         pongHold = 80;
                     }
-                    if (pong.getY() == frame.getHeight()) {
+                    if (pong.getY() >= frame.getHeight()) {
                         IsMoveRightDown = false;
                         IsMoveRightUp = true;
                     }
                 } else if (IsMoveLeft) {
-                    pong.setX(pong.getX() - pongSpeed);
+                    while((pong.getX() > platformOne.getX()) && ((pong.getX() - tempSpeed) < platformOne.getX())){
+                        tempSpeed--;
+                    }
+                    pong.setX(pong.getX() - tempSpeed);
                     if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
                         IsMoveLeft = false;
                         IsMoveRightUp = true;
@@ -275,8 +292,11 @@ public class MultiPlayer extends Canvas implements Runnable {
                         pongHold = 80;
                     }
                 } else if (IsMoveLeftUp) {
-                    pong.setX(pong.getX() - pongSpeed);
-                    pong.setY(pong.getY() - pongSpeed);
+                    while((pong.getX() > platformOne.getX()) && ((pong.getX() - tempSpeed) < platformOne.getX())){
+                        tempSpeed--;
+                    }
+                    pong.setX(pong.getX() - tempSpeed);
+                    pong.setY(pong.getY() - tempSpeed);
                     if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
                         IsMoveLeftUp = false;
                         IsMoveRightUp = true;
@@ -295,13 +315,16 @@ public class MultiPlayer extends Canvas implements Runnable {
                         playerTwoScore++;
                         pongHold = 80;
                     }
-                    if (pong.getY() == 0) {
+                    if (pong.getY() <= 0) {
                         IsMoveLeftUp = false;
                         IsMoveLeftDown = true;
                     }
                 } else if (IsMoveLeftDown) {
-                    pong.setX(pong.getX() - pongSpeed);
-                    pong.setY(pong.getY() + pongSpeed);
+                    while((pong.getX() > platformOne.getX()) && ((pong.getX() - tempSpeed) < platformOne.getX())){
+                        tempSpeed--;
+                    }
+                    pong.setX(pong.getX() - tempSpeed);
+                    pong.setY(pong.getY() + tempSpeed);
                     if (pong.getY() >= platformOne.getY() && pong.getY() <= platformOne.getY() + 20 && pong.getX() == platformOne.getX()) {
                         IsMoveLeftDown = false;
                         IsMoveRightUp = true;
@@ -320,7 +343,7 @@ public class MultiPlayer extends Canvas implements Runnable {
                         playerTwoScore++;
                         pongHold = 80;
                     }
-                    if (pong.getY() == frame.getHeight()) {
+                    if (pong.getY() >= frame.getHeight()) {
                         IsMoveLeftDown = false;
                         IsMoveLeftUp = true;
                     }
@@ -328,4 +351,6 @@ public class MultiPlayer extends Canvas implements Runnable {
             }
         }
     }
+
+
 }
