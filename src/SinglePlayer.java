@@ -30,6 +30,8 @@ public class SinglePlayer extends Canvas implements Runnable {
     public int pongSpeed = 5;
     public String printScore = playerOneScore + " : " + playerTwoScore;
     public static boolean isPaused = false;
+    public static int pauseDelay = 0;
+    public static String pauseMessage = "-Game Paused-";
 
     /* Buffer */
     private BufferedImage image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -71,7 +73,7 @@ public class SinglePlayer extends Canvas implements Runnable {
                 }
 
 
-                if (shoudRender && !isPaused) {
+                if (shoudRender) {
                     frames++;
                     render();
                 }
@@ -88,37 +90,42 @@ public class SinglePlayer extends Canvas implements Runnable {
 
     public void tick() {
         tickCount++;
-
-        platformOne.setSpeed(playerOneSpeed);
-        platformTwo.setSpeed(aiSpeed);
-
-        if (input.p1Up.isPressed() && !isPaused){
-            platformOne.moveUp();
+        if(pauseDelay > 0) {
+            pauseDelay--;
         }
-        if (input.p1Down.isPressed() && !isPaused){
-            platformOne.moveDown();
-        }
-        if (input.pause.isPressed()) {
+
+        if (input.pause.isPressed() && !(pauseDelay > 0)) {
             isPaused = !isPaused;
-        }
-        if(pongHold > 0){
-            pongHold--;
+            pauseDelay = 30;
         }
 
+        if(!isPaused) {
+            platformOne.setSpeed(playerOneSpeed);
+            platformTwo.setSpeed(aiSpeed);
 
-        if (hasBeenOffset) {
-            offset = offsetArray[(generator.nextInt(12))];
-            hasBeenOffset = false;
-        }
+            if (input.p1Up.isPressed() && !isPaused) {
+                platformOne.moveUp();
+            }
+            if (input.p1Down.isPressed() && !isPaused) {
+                platformOne.moveDown();
+            }
 
-        Ai(offset);
+            if (pongHold > 0) {
+                pongHold--;
+            }
+            if (hasBeenOffset) {
+                offset = offsetArray[(generator.nextInt(12))];
+                hasBeenOffset = false;
+            }
 
-        movePong();
+            Ai(offset);
+            movePong();
 
-        printScore = playerOneScore + " : " + playerTwoScore;
+            printScore = playerOneScore + " : " + playerTwoScore;
 
-        for (int i = 0; i < pixels.length; i++) {
-            pixels[i] = i * tickCount;
+            for (int i = 0; i < pixels.length; i++) {
+                pixels[i] = i * tickCount;
+            }
         }
     }
 
@@ -131,24 +138,29 @@ public class SinglePlayer extends Canvas implements Runnable {
 
         Graphics g = bs.getDrawGraphics();
 
-        //background
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+        if(!isPaused) {
+            //background
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
 
-        //draw platform one
-        g.setColor(Color.WHITE);
-        g.fillRect(platformOne.getX(), platformOne.getY(), platformOne.getWidth(), platformOne.getHeight());
+            //draw platform one
+            g.setColor(Color.WHITE);
+            g.fillRect(platformOne.getX(), platformOne.getY(), platformOne.getWidth(), platformOne.getHeight());
 
-        //draw platform two
-        g.setColor(Color.WHITE);
-        g.fillRect(platformTwo.getX(), platformTwo.getY(), platformTwo.getWidth(), platformTwo.getHeight());
+            //draw platform two
+            g.setColor(Color.WHITE);
+            g.fillRect(platformTwo.getX(), platformTwo.getY(), platformTwo.getWidth(), platformTwo.getHeight());
 
-        //draw pong
-        g.setColor(Color.WHITE);
-        g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
+            //draw pong
+            g.setColor(Color.WHITE);
+            g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
 
-        g.setColor(Color.WHITE);
-        g.drawString(printScore, frame.getWidth() / 2 - (printScore.length() / 2), 10);
+            g.setColor(Color.WHITE);
+            g.drawString(printScore, frame.getWidth() / 2 - (printScore.length() / 2), 10);
+        } else{
+            g.setColor(Color.WHITE);
+            g.drawString(pauseMessage, frame.getWidth() / 2 - (pauseMessage.length() + 17), 25);
+        }
 
         g.dispose();
         bs.show();
