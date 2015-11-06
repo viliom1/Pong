@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.39954337">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -36,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/src/ZenMode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="161" column="64" selection-start-line="161" selection-start-column="64" selection-end-line="161" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -46,11 +46,9 @@
         <entry file="file://$PROJECT_DIR$/src/SurvaivalMode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+              <caret line="164" column="62" selection-start-line="164" selection-start-column="62" selection-end-line="164" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#17906#17907#0" expanded="true" />
-                <element signature="e#17943#17944#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,7 +59,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="118" column="32" selection-start-line="118" selection-start-column="32" selection-end-line="118" selection-end-column="32" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#3729#3730#0" expanded="false" />
+                <element signature="e#3775#3776#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,39 +73,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
-              <folding>
-                <element signature="e#206#207#0" expanded="false" />
-                <element signature="e#244#245#0" expanded="false" />
-                <element signature="e#292#293#0" expanded="false" />
-                <element signature="e#335#336#0" expanded="false" />
-                <element signature="e#378#379#0" expanded="false" />
-                <element signature="e#432#433#0" expanded="false" />
-                <element signature="e#812#813#0" expanded="false" />
-                <element signature="e#858#859#0" expanded="false" />
-                <element signature="e#900#901#0" expanded="false" />
-                <element signature="e#947#948#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Platform.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Platform.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-              <folding>
-                <element signature="e#297#298#0" expanded="false" />
-                <element signature="e#321#322#0" expanded="false" />
-                <element signature="e#352#353#0" expanded="false" />
-                <element signature="e#378#379#0" expanded="false" />
-                <element signature="e#403#404#0" expanded="false" />
-                <element signature="e#427#428#0" expanded="false" />
-                <element signature="e#458#459#0" expanded="false" />
-                <element signature="e#484#485#0" expanded="false" />
-                <element signature="e#674#675#0" expanded="false" />
-                <element signature="e#703#704#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -131,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/src/MultiPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="163" column="88" selection-start-line="163" selection-start-column="88" selection-end-line="163" selection-end-column="88" />
+              <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,17 +111,31 @@
         <entry file="file://$PROJECT_DIR$/src/StartMenu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
+              <caret line="92" column="2" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameOverMenu.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameOverMenu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameOverMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.1849315">
+            <state vertical-scroll-proportion="0.0">
               <caret line="121" column="32" selection-start-line="121" selection-start-column="32" selection-end-line="121" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#3871#3872#0" expanded="false" />
+                <element signature="e#3913#3914#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Project.iml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Project.iml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -185,16 +169,16 @@
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/GameEngine.java" />
         <option value="$PROJECT_DIR$/src/Platform.java" />
-        <option value="$PROJECT_DIR$/src/MultiPlayer.java" />
         <option value="$PROJECT_DIR$/src/SinglePlayer.java" />
-        <option value="$PROJECT_DIR$/src/ZenMode.java" />
         <option value="$PROJECT_DIR$/src/SurvailvaMode.java" />
         <option value="$PROJECT_DIR$/src/SinglePlayerMode.java" />
         <option value="$PROJECT_DIR$/src/StartMenu.java" />
         <option value="$PROJECT_DIR$/src/Display.java" />
         <option value="$PROJECT_DIR$/src/SinglePlayerMenu.java" />
-        <option value="$PROJECT_DIR$/src/SurvaivalMode.java" />
         <option value="$PROJECT_DIR$/src/GameOverMenu.java" />
+        <option value="$PROJECT_DIR$/src/MultiPlayer.java" />
+        <option value="$PROJECT_DIR$/src/ZenMode.java" />
+        <option value="$PROJECT_DIR$/src/SurvaivalMode.java" />
       </list>
     </option>
   </component>
@@ -237,9 +221,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -274,6 +255,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -303,36 +287,6 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="StartMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="StartMenu" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="ZenMode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="ZenMode" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Project" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="SinglePlayerMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="SinglePlayerMenu" />
@@ -351,6 +305,36 @@
     <configuration default="false" name="GameOverMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="GameOverMenu" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="MultiPlayer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="MultiPlayer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="SurvaivalMode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="SurvaivalMode" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" />
@@ -491,18 +475,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="Application.StartMenu" />
-      <item index="2" class="java.lang.String" itemvalue="Application.ZenMode" />
-      <item index="3" class="java.lang.String" itemvalue="Application.SinglePlayerMenu" />
-      <item index="4" class="java.lang.String" itemvalue="Application.GameOverMenu" />
+      <item index="1" class="java.lang.String" itemvalue="Application.SinglePlayerMenu" />
+      <item index="2" class="java.lang.String" itemvalue="Application.GameOverMenu" />
+      <item index="3" class="java.lang.String" itemvalue="Application.MultiPlayer" />
+      <item index="4" class="java.lang.String" itemvalue="Application.SurvaivalMode" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Application.GameOverMenu" />
-        <item index="2" class="java.lang.String" itemvalue="Application.SinglePlayerMenu" />
-        <item index="3" class="java.lang.String" itemvalue="Application.StartMenu" />
-        <item index="4" class="java.lang.String" itemvalue="Application.ZenMode" />
+        <item index="1" class="java.lang.String" itemvalue="Application.SurvaivalMode" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MultiPlayer" />
+        <item index="3" class="java.lang.String" itemvalue="Application.GameOverMenu" />
+        <item index="4" class="java.lang.String" itemvalue="Application.SinglePlayerMenu" />
       </list>
     </recent_temporary>
   </component>
@@ -599,20 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-          <folding>
-            <element signature="e#251#252#0" expanded="false" />
-            <element signature="e#275#276#0" expanded="false" />
-            <element signature="e#306#307#0" expanded="false" />
-            <element signature="e#332#333#0" expanded="false" />
-            <element signature="e#357#358#0" expanded="false" />
-            <element signature="e#381#382#0" expanded="false" />
-            <element signature="e#412#413#0" expanded="false" />
-            <element signature="e#438#439#0" expanded="false" />
-            <element signature="e#467#468#0" expanded="false" />
-            <element signature="e#495#496#0" expanded="false" />
-            <element signature="e#525#526#0" expanded="false" />
-            <element signature="e#554#555#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -628,18 +598,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#206#207#0" expanded="false" />
-            <element signature="e#244#245#0" expanded="false" />
-            <element signature="e#292#293#0" expanded="false" />
-            <element signature="e#335#336#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#432#433#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#858#859#0" expanded="false" />
-            <element signature="e#900#901#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -668,18 +627,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -695,18 +643,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#206#207#0" expanded="false" />
-            <element signature="e#244#245#0" expanded="false" />
-            <element signature="e#292#293#0" expanded="false" />
-            <element signature="e#335#336#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#432#433#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#858#859#0" expanded="false" />
-            <element signature="e#900#901#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -735,18 +672,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -762,18 +688,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#206#207#0" expanded="false" />
-            <element signature="e#244#245#0" expanded="false" />
-            <element signature="e#292#293#0" expanded="false" />
-            <element signature="e#335#336#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#432#433#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#858#859#0" expanded="false" />
-            <element signature="e#900#901#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -802,18 +717,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="5" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="34" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -829,18 +733,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
-          <folding>
-            <element signature="e#206#207#0" expanded="false" />
-            <element signature="e#244#245#0" expanded="false" />
-            <element signature="e#292#293#0" expanded="false" />
-            <element signature="e#335#336#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#432#433#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#858#859#0" expanded="false" />
-            <element signature="e#900#901#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -869,18 +762,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -917,18 +799,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -965,18 +836,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,18 +873,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,18 +910,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1109,18 +947,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1157,18 +984,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1218,20 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-          <folding>
-            <element signature="e#251#252#0" expanded="false" />
-            <element signature="e#275#276#0" expanded="false" />
-            <element signature="e#306#307#0" expanded="false" />
-            <element signature="e#332#333#0" expanded="false" />
-            <element signature="e#357#358#0" expanded="false" />
-            <element signature="e#381#382#0" expanded="false" />
-            <element signature="e#412#413#0" expanded="false" />
-            <element signature="e#438#439#0" expanded="false" />
-            <element signature="e#467#468#0" expanded="false" />
-            <element signature="e#495#496#0" expanded="false" />
-            <element signature="e#525#526#0" expanded="false" />
-            <element signature="e#554#555#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1239,18 +1041,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-          <folding>
-            <element signature="e#297#298#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#403#404#0" expanded="false" />
-            <element signature="e#427#428#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#484#485#0" expanded="false" />
-            <element signature="e#674#675#0" expanded="false" />
-            <element signature="e#703#704#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1258,41 +1049,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
-          <folding>
-            <element signature="e#206#207#0" expanded="false" />
-            <element signature="e#244#245#0" expanded="false" />
-            <element signature="e#292#293#0" expanded="false" />
-            <element signature="e#335#336#0" expanded="false" />
-            <element signature="e#378#379#0" expanded="false" />
-            <element signature="e#432#433#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#858#859#0" expanded="false" />
-            <element signature="e#900#901#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Project.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MultiPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="163" column="88" selection-start-line="163" selection-start-column="88" selection-end-line="163" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ZenMode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1314,18 +1070,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StartMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SinglePlayerMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="32" selection-start-line="118" selection-start-column="32" selection-end-line="118" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3729#3730#0" expanded="false" />
+            <element signature="e#3775#3776#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameOverMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="32" selection-start-line="121" selection-start-column="32" selection-end-line="121" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3871#3872#0" expanded="false" />
+            <element signature="e#3913#3914#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Project.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StartMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="92" column="2" selection-start-line="92" selection-start-column="2" selection-end-line="92" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MultiPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZenMode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="161" column="64" selection-start-line="161" selection-start-column="64" selection-end-line="161" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -1333,27 +1129,17 @@
     <entry file="file://$PROJECT_DIR$/src/SurvaivalMode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+          <caret line="164" column="62" selection-start-line="164" selection-start-column="62" selection-end-line="164" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#17906#17907#0" expanded="true" />
-            <element signature="e#17943#17944#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameOverMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1849315">
-          <caret line="121" column="32" selection-start-line="121" selection-start-column="32" selection-end-line="121" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.39954337">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>

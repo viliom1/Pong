@@ -162,10 +162,11 @@ public class SurvaivalMode extends Canvas implements Runnable {
             g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
 
             g.setColor(Color.WHITE);
-            g.drawString(printScore, frame.getWidth() / 2 - (printScore.length() / 2), 10);
-        } else{
+            g.drawString(printScore, frame.getWidth() / 2 - 14, 10);
+        }
+        else{
             g.setColor(Color.WHITE);
-            g.drawString(pauseMessage, frame.getWidth() / 2 - (pauseMessage.length() / 2), 25);
+            g.drawString(pauseMessage, frame.getWidth() / 2 - 34, 25);
         }
 
         g.dispose();
