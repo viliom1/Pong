@@ -86,7 +86,7 @@ public class SinglePlayerMenu extends Canvas implements Runnable {
         }
         if (input.choseMode.isPressed()){
             if (rectangle.getY() < 200){
-                SurvaivalMode survaivalMode = new SurvaivalMode().start();
+                SurvivalMode survaivalMode = new SurvivalMode().start();
             }
             else{
                 ZenMode zenMode = new ZenMode().start();
@@ -114,7 +114,7 @@ public class SinglePlayerMenu extends Canvas implements Runnable {
         g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
 
         g.setColor(Color.WHITE);
-        g.drawString("Survaival Mode", 372, 200);
+        g.drawString(" Survival Mode", 372, 200);
 
         g.setColor(Color.WHITE);
         g.drawString("Zen Mode", 387, 300);

@@ -117,7 +117,7 @@ public class GameOverMenu extends Canvas implements Runnable {
         g.drawString("GAME OVER", 379, 70);
 
         g.setColor(Color.WHITE);
-        g.drawString("Your Score is " + SurvaivalMode.getScore(), 372, 120);
+        g.drawString("Your Score is " + SurvivalMode.getScore(), 372, 120);
 
         g.setColor(Color.WHITE);
         g.drawString("New Game", 383, 200);

@@ -36,10 +36,10 @@ public class KeyInput implements KeyListener {
         toggleKey(e.getKeyCode(),false);
     }
     public void toggleKey(int keyCode, boolean isPressed){
-        if (keyCode == KeyEvent.VK_Q){
+        if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_UP){
             p1Up.toggle(isPressed);
         }
-        if (keyCode == KeyEvent.VK_A) {
+        if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_DOWN) {
             p1Down.toggle(isPressed);
         }
         if (keyCode == KeyEvent.VK_P){

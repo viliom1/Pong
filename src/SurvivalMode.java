@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.Random;
 
-public class SurvaivalMode extends Canvas implements Runnable {
+public class SurvivalMode extends Canvas implements Runnable {
 
     /* declaration of the Display class which holds JFrame and Canvas initializations */
     Display frame = new Display(NAME);
@@ -40,7 +40,7 @@ public class SurvaivalMode extends Canvas implements Runnable {
     /* KeyInput object */
     public KeyInput input = new KeyInput(frame);
 
-    public SurvaivalMode() {
+    public SurvivalMode() {
         // constructor
     }
 
@@ -114,7 +114,7 @@ public class SurvaivalMode extends Canvas implements Runnable {
                 pongHold--;
             }
             if (hasBeenOffset) {
-                offset = offsetArray[(generator.nextInt(12))];
+                offset = offsetArray[(generator.nextInt(14))];
                 hasBeenOffset = false;
             }
 
@@ -174,10 +174,10 @@ public class SurvaivalMode extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        new SurvaivalMode().start();
+        new SurvivalMode().start();
     }
 
-    public synchronized SurvaivalMode start() {
+    public synchronized SurvivalMode start() {
         running = true;
         new Thread(this).start();
         return null;
@@ -190,7 +190,7 @@ public class SurvaivalMode extends Canvas implements Runnable {
 
     int[] offsetArray = {-5,-10,-15,-20,-25,-30,-35,0,5,10,15,20,25,30,35};
     Random generator = new Random();
-    int offset = offsetArray[(generator.nextInt(15))];
+    int offset = 0;
     boolean hasBeenOffset = false;
 
     public void Ai(int offset){
@@ -282,7 +282,8 @@ public class SurvaivalMode extends Canvas implements Runnable {
                         playerOneSpeed += 1;
                     }
                     pongHold = 80;
-                    hasBeenOffset = true;
+                    hasBeenOffset = false;
+                    offset = 0;
 
                 }
             } else if (IsMoveRightUp) {
@@ -320,7 +321,8 @@ public class SurvaivalMode extends Canvas implements Runnable {
                     }
 
                     pongHold = 80;
-                    hasBeenOffset = true;
+                    hasBeenOffset = false;
+                    offset = 0;
 
                 }
                 if (pong.getY() <= 0) {
@@ -361,7 +363,8 @@ public class SurvaivalMode extends Canvas implements Runnable {
                         playerOneSpeed += 1;
                     }
                     pongHold = 80;
-                    hasBeenOffset = true;
+                    hasBeenOffset = false;
+                    offset = 0;
 
                 }
                 if (pong.getY() >= frame.getHeight()) {

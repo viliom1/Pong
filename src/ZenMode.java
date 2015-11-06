@@ -114,7 +114,7 @@ public class ZenMode extends Canvas implements Runnable {
                 pongHold--;
             }
             if (hasBeenOffset) {
-                offset = offsetArray[(generator.nextInt(12))];
+                offset = offsetArray[(generator.nextInt(14))];
                 hasBeenOffset = false;
             }
 
@@ -183,7 +183,7 @@ public class ZenMode extends Canvas implements Runnable {
 
     int[] offsetArray = {-5,-10,-15,-20,-25,-30,-35,0,5,10,15,20,25,30,35};
     Random generator = new Random();
-    int offset = offsetArray[(generator.nextInt(15))];
+    int offset = 0;
     boolean hasBeenOffset = false;
 
     public void Ai(int offset){
@@ -275,7 +275,8 @@ public class ZenMode extends Canvas implements Runnable {
                         playerOneSpeed += 1;
                     }
                     pongHold = 80;
-                    hasBeenOffset = true;
+                    hasBeenOffset = false;
+                    offset = 0;
 
                 }
             } else if (IsMoveRightUp) {
@@ -313,7 +314,8 @@ public class ZenMode extends Canvas implements Runnable {
                     }
 
                     pongHold = 80;
-                    hasBeenOffset = true;
+                    hasBeenOffset = false;
+                    offset = 0;
 
                 }
                 if (pong.getY() <= 0) {
@@ -354,7 +356,8 @@ public class ZenMode extends Canvas implements Runnable {
                         playerOneSpeed += 1;
                     }
                     pongHold = 80;
-                    hasBeenOffset = true;
+                    hasBeenOffset = false;
+                    offset = 0;
 
                 }
                 if (pong.getY() >= frame.getHeight()) {
