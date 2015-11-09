@@ -86,13 +86,18 @@ public class StartMenu extends Canvas implements Runnable {
         }
         if (input.choseMode.isPressed()){
             if (rectangle.getY() < 200){
+                running = false;
+                frame.dispouse();
                 SinglePlayerMenu singlePlayerMenu = new SinglePlayerMenu().start();
             }
             else{
+                running = false;
+                frame.dispouse();
                 MultiPlayer multiPlayer = new MultiPlayer().start();
             }
             running = false;
             frame.dispouse();
+            Thread.currentThread().stop();
         }
 
         for (int i = 0; i < pixels.length; i++) {
@@ -135,4 +140,5 @@ public class StartMenu extends Canvas implements Runnable {
         new Thread(this).start();
         return null;
     }
+
 }

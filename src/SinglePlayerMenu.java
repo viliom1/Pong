@@ -86,13 +86,20 @@ public class SinglePlayerMenu extends Canvas implements Runnable {
         }
         if (input.choseMode.isPressed()){
             if (rectangle.getY() < 200){
+                running = false;
+                frame.dispouse();
                 SurvivalMode survaivalMode = new SurvivalMode().start();
+
             }
             else{
+                running = false;
+                frame.dispouse();
                 ZenMode zenMode = new ZenMode().start();
             }
             running = false;
             frame.dispouse();
+            Thread.currentThread().stop();
+
         }
 
         for (int i = 0; i < pixels.length; i++) {
@@ -135,4 +142,5 @@ public class SinglePlayerMenu extends Canvas implements Runnable {
         new Thread(this).start();
         return null;
     }
+
 }

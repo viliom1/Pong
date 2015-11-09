@@ -89,6 +89,7 @@ public class GameOverMenu extends Canvas implements Runnable {
                 StartMenu startMenu = new StartMenu().start();
                 running = false;
                 frame.dispouse();
+                Thread.currentThread().stop();
             }
             else{
                 System.exit(0);
