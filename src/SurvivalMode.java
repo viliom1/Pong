@@ -32,6 +32,7 @@ public class SurvivalMode extends Canvas implements Runnable {
     public static boolean isPaused = false;
     public static int pauseDelay = 0;
     public static String pauseMessage = "-Game Paused-";
+    public static boolean isActivated = false;
 
     /* Buffer */
     private BufferedImage image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -45,6 +46,8 @@ public class SurvivalMode extends Canvas implements Runnable {
     }
 
     public void run() {
+        playerOneScore = 0;
+        isActivated = false;
         while (true) {
             long lastTime = System.nanoTime();
             double nsPerTick = 1_000_000_000D / 60D;
@@ -90,8 +93,13 @@ public class SurvivalMode extends Canvas implements Runnable {
 
     public void tick() {
         tickCount++;
+
         if(pauseDelay > 0) {
             pauseDelay--;
+        }
+
+        if (input.activate.isPressed()){
+            isActivated = true;
         }
 
         if (input.pause.isPressed() && !(pauseDelay > 0)) {
@@ -99,7 +107,7 @@ public class SurvivalMode extends Canvas implements Runnable {
             pauseDelay = 30;
         }
 
-        if(!isPaused) {
+        if(!isPaused && isActivated) {
             platformOne.setSpeed(playerOneSpeed);
             platformTwo.setSpeed(aiSpeed);
 
@@ -144,29 +152,38 @@ public class SurvivalMode extends Canvas implements Runnable {
 
         Graphics g = bs.getDrawGraphics();
 
-        if(!isPaused) {
-            //background
+        if (isActivated) {
+            if (!isPaused) {
+                //background
+                g.setColor(Color.BLACK);
+                g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+
+                //draw platform one
+                g.setColor(Color.WHITE);
+                g.fillRect(platformOne.getX(), platformOne.getY(), platformOne.getWidth(), platformOne.getHeight());
+
+                //draw platform two
+                g.setColor(Color.WHITE);
+                g.fillRect(platformTwo.getX(), platformTwo.getY(), platformTwo.getWidth(), platformTwo.getHeight());
+
+                //draw pong
+                g.setColor(Color.WHITE);
+                g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
+
+                g.setColor(Color.WHITE);
+                g.drawString(printScore, frame.getWidth() / 2 - 14, 10);
+            } else {
+                g.setColor(Color.WHITE);
+                g.drawString(pauseMessage, frame.getWidth() / 2 - 34, 25);
+            }
+        }else{
             g.setColor(Color.BLACK);
             g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
 
-            //draw platform one
             g.setColor(Color.WHITE);
-            g.fillRect(platformOne.getX(), platformOne.getY(), platformOne.getWidth(), platformOne.getHeight());
+            g.drawString("Click Screen ", frame.getWidth() / 2 - 35, frame.getHeight() / 2 - 10);
+            g.drawString("and press SPACE to start!", frame.getWidth() / 2 - 70, frame.getHeight() / 2 + 10);
 
-            //draw platform two
-            g.setColor(Color.WHITE);
-            g.fillRect(platformTwo.getX(), platformTwo.getY(), platformTwo.getWidth(), platformTwo.getHeight());
-
-            //draw pong
-            g.setColor(Color.WHITE);
-            g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
-
-            g.setColor(Color.WHITE);
-            g.drawString(printScore, frame.getWidth() / 2 - 14, 10);
-        }
-        else{
-            g.setColor(Color.WHITE);
-            g.drawString(pauseMessage, frame.getWidth() / 2 - 34, 25);
         }
 
         g.dispose();

@@ -31,6 +31,7 @@ public class MultiPlayer extends Canvas implements Runnable {
     public static boolean isPaused = false;
     public static int pauseDelay = 0;
     public static String pauseMessage = "-Game Paused-";
+    public static boolean isActivated = false;
 
     /* Buffer */
     private BufferedImage image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -44,6 +45,7 @@ public class MultiPlayer extends Canvas implements Runnable {
     }
 
     public void run() {
+        isActivated = false;
         while (true) {
             long lastTime = System.nanoTime();
             double nsPerTick = 1_000_000_000D / 60D;
@@ -93,12 +95,16 @@ public class MultiPlayer extends Canvas implements Runnable {
             pauseDelay--;
         }
 
+        if (input.activate.isPressed()){
+            isActivated = true;
+        }
+
         if (input.pause.isPressed() && !(pauseDelay > 0)) {
             isPaused = !isPaused;
             pauseDelay = 30;
         }
 
-        if (!isPaused) {
+        if (!isPaused && isActivated) {
             platformOne.setSpeed(playerOneSpeed);
             platformTwo.setSpeed(playerTwoSpeed);
 
@@ -139,29 +145,38 @@ public class MultiPlayer extends Canvas implements Runnable {
 
         Graphics g = bs.getDrawGraphics();
 
-        if (!isPaused) {
+        if(isActivated) {
+            if (!isPaused) {
 
-            //background
+                //background
+                g.setColor(Color.BLACK);
+                g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+
+                //draw platform one
+                g.setColor(Color.WHITE);
+                g.fillRect(platformOne.getX(), platformOne.getY(), platformOne.getWidth(), platformOne.getHeight());
+
+                //draw platform two
+                g.setColor(Color.WHITE);
+                g.fillRect(platformTwo.getX(), platformTwo.getY(), platformTwo.getWidth(), platformTwo.getHeight());
+
+                //draw pong
+                g.setColor(Color.WHITE);
+                g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
+
+                g.setColor(Color.WHITE);
+                g.drawString(printScore, frame.getWidth() / 2 - (printScore.length() / 2), 10);
+            } else {
+                g.setColor(Color.WHITE);
+                g.drawString(pauseMessage, frame.getWidth() / 2 - 34, 25);
+            }
+        }else{
             g.setColor(Color.BLACK);
             g.fillRect(0, 0, frame.getWidth(), frame.getHeight());
 
-            //draw platform one
             g.setColor(Color.WHITE);
-            g.fillRect(platformOne.getX(), platformOne.getY(), platformOne.getWidth(), platformOne.getHeight());
-
-            //draw platform two
-            g.setColor(Color.WHITE);
-            g.fillRect(platformTwo.getX(), platformTwo.getY(), platformTwo.getWidth(), platformTwo.getHeight());
-
-            //draw pong
-            g.setColor(Color.WHITE);
-            g.fillOval(pong.getX(), pong.getY(), pong.getWidth(), pong.getHeight());
-
-            g.setColor(Color.WHITE);
-            g.drawString(printScore, frame.getWidth() / 2 - (printScore.length() / 2), 10);
-        } else {
-            g.setColor(Color.WHITE);
-            g.drawString(pauseMessage, frame.getWidth() / 2 - 34, 25);
+            g.drawString("Click Screen ", frame.getWidth() / 2 - 35, frame.getHeight() / 2 - 10);
+            g.drawString("and press SPACE to start!", frame.getWidth() / 2 - 70, frame.getHeight() / 2 + 10);
         }
 
         g.dispose();

@@ -78,6 +78,7 @@ public class StartMenu extends Canvas implements Runnable {
     public void tick() {
         tickCount++;
 
+
         if (input.up.isPressed()){
             rectangle.moveUp();
         }

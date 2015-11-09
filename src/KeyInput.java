@@ -1,5 +1,8 @@
+import javafx.scene.input.MouseButton;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
 
 public class KeyInput implements KeyListener {
 
@@ -25,6 +28,7 @@ public class KeyInput implements KeyListener {
     public Key up = new Key();
     public Key down = new Key();
     public Key choseMode = new Key();
+    public Key activate = new Key();
 
 
     public void keyTyped(KeyEvent e) {
@@ -60,6 +64,9 @@ public class KeyInput implements KeyListener {
         }
         if (keyCode == KeyEvent.VK_ENTER){
             choseMode.toggle(isPressed);
+        }
+        if (keyCode == KeyEvent.VK_SPACE){
+            activate.toggle(isPressed);
         }
     }
 }
